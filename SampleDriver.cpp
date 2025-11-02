@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <chrono>
+#include "Phase-1/Graph.h"
 /*
     Add other includes that you require, only write code wherever indicated
 */
@@ -19,7 +20,7 @@ int main(int argc, char* argv[]) {
         Add your graph reading and processing code here
         Initialize any classes and data structures needed for query processing
     */
-    
+    Graph G ;
 
     // Read queries from second file
     std::ifstream queries_file(argv[2]);
@@ -27,9 +28,11 @@ int main(int argc, char* argv[]) {
         std::cerr << "Failed to open " << argv[2] << std::endl;
         return 1;
     }
+    
     json queries_json;
     queries_file >> queries_json;
-
+    queries_file.close();
+    
     std::ofstream output_file("output.json");
     if (!output_file.is_open()) {
         std::cerr << "Failed to open output.json for writing" << std::endl;

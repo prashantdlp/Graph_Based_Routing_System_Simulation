@@ -1,0 +1,69 @@
+{
+ 	"meta": {
+    		"id": "sample_testcase_1",
+    		"nodes": 3,
+   		    "description": "Instructor-provided map for course project"
+  	},
+    "nodes": [
+    		{
+                "id": 0, 
+                "lat": 19.070000,
+                "lon": 72.870000,
+                "pois": ["Restaurant", "Hospital"] 
+            },{
+                "id": 1, 
+                "lat": 19.071000,
+                "lon": 72.871000,
+                "pois": ["School"] 
+            },{
+                "id": 2, 
+                "lat": 19.072000,
+                "lon": 72.872000,
+                "pois": ["Home"] 
+            },{
+                "id": 3, 
+                "lat": 19.073000,
+                "lon": 72.873000,
+                "pois": ["Police Station"] 
+            }             
+  	],
+  	"edges": [
+    		{
+      		"id": 1001,
+      		"u": 1,
+      		"v": 2,
+      		"length": 100.0,
+      		"average_time": 5.5,
+      		"speed_profile": [40, 42, 39, 45], 
+     		"oneway": false,
+            "road_type": "primary"
+        },{
+      		"id": 1001,
+      		"u": 2,
+      		"v": 3,
+      		"length": 100.0,
+      		"average_time": 5.5,
+      		"speed_profile": [40, 42, 39, 45], 
+     		"oneway": false,
+            "road_type": "primary"
+        },{
+      		"id": 1001,
+      		"u": 3,
+      		"v": 4,
+      		"length": 100.0,
+      		"average_time": 5.5,
+      		"speed_profile": [40, 42, 39, 45], 
+     		"oneway": false,
+            "road_type": "primary"
+        },{
+      		"id": 1001,
+      		"u": 4,
+      		"v": 1,
+      		"length": 100.0,
+      		"average_time": 5.5,
+      		"speed_profile": [40, 42, 39, 45], 
+     		"oneway": false,
+            "road_type": "primary"
+        }
+  ]
+}

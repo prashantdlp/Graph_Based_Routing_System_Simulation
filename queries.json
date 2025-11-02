@@ -1,0 +1,26 @@
+{
+"meta": { "id": "qset1" },
+"events": [
+        { 
+            "type": "remove_edge",
+            "edge_id": 1001 
+        },{
+            "type": "shortest_path",
+            "id": 1,
+            "source": 10,
+            "target": 250,
+            "mode": "time",
+            "constraints": {
+                "forbidden_nodes": [5],
+                "forbidden_road_types": ["primary"] 
+                }
+        },{
+            "type": "knn",
+                "id": 2,
+                "poi" : "restaurant",
+            "query_point": { "lat": 19.07, "lon": 72.87 },
+            "k": 5,
+            "metric": "shortest_path"
+        }
+    ]
+}
