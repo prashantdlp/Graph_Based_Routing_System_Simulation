@@ -3,7 +3,8 @@
 
 #include "Graph.hpp"
 #include <vector>
-
+#include <queue>
+#include <algorithm>
 // Simple version - just functions, no helper structs
 struct constraints{
     std::vector<int> forbidden_nodes;
