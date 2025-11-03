@@ -5,7 +5,7 @@ The project is divided into three main phases, each building upon the last to ha
 
 🎯 Project Phases
 
-    Phase 1: Core Routing Algorithms
+Phase 1: Core Routing Algorithms
 
         Implementation of standard graph algorithms on a dynamic graph.
 
@@ -17,7 +17,7 @@ The project is divided into three main phases, each building upon the last to ha
 
         Features: Supports dynamic graph updates like adding, removing, and modifying edges.
 
-    Phase 2: Advanced & Heuristic Routing
+Phase 2: Advanced & Heuristic Routing
 
         Implementation of advanced heuristic and approximate algorithms for complex routing queries.
 
@@ -29,7 +29,7 @@ The project is divided into three main phases, each building upon the last to ha
 
             Approximate Shortest Paths: Handling large batches of queries under a strict time budget, balancing speed vs. accuracy (scored on MSE).
 
-    Phase 3: Delivery Fleet Scheduling
+Phase 3: Delivery Fleet Scheduling
 
         A research-oriented exploration of a TSP-variant for instant delivery services.
 
