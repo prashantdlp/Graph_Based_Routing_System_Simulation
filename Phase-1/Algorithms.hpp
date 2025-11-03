@@ -23,7 +23,7 @@ public:
     
     static std::vector<int> KNN(
         const Graph& graph,
-        double lat, double lon,
+        // double lat, double lon,
         const std::string& poi,
         const Node& node,
         int k,

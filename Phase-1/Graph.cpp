@@ -46,9 +46,9 @@ void Graph::addEdge(int id, int u, int v, double length, double avg_time,
     edges[id] = e;
 
     // Update adjacency list
-    adj_list[u].push_back(id);
+    adj_list[u].push_back(e);
     if (!oneway)
-        adj_list[v].push_back(id);
+        adj_list[v].push_back(e);
 }
 
 const Node* Graph::getNode(int id) const {
@@ -82,10 +82,10 @@ void Graph::modifyEdge(int edge_id, const Edge& patch) {
     if (patch.oneway.has_value()) e->oneway = patch.oneway.value();
 }
 
-const std::vector<int>& Graph::getAdjacentEdges(int node_id) const {
+const std::vector<Edge*>& Graph::getAdjacentEdges(int node_id) const {
     auto it = adj_list.find(node_id);
     if (it != adj_list.end()) return it->second;
-    return std::vector<int>{};
+    return std::vector<Edge*>{};
 }
 
 std::vector<int> Graph::getNodesWithPOI(const std::string& poi) const {
