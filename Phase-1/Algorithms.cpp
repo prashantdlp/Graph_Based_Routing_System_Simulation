@@ -108,12 +108,17 @@ std::vector<int> Algorithms::KNN(
     const std::string& metric
     ){
         //based on euclidian
-    if(metric == "euclidean"){
     std::priority_queue<std::pair<double, int>> distances;
     for(auto id : graph.getNodesWithPOI(poi)){
         if(id == origin.id){continue;}
         const Node* node = graph.getNode(id);
-        double distance = euclidian_distance(origin.lat, origin.lon, node->lat, node->lon);   
+        double distance =0;
+        if(metric == "euclidean"){
+         distance = euclidian_distance(origin.lat, origin.lon, node->lat, node->lon);   }
+        else if (metric == "shortest_path"){
+        constraints noconstr;
+         distance = std::get<double>(Shortest_paths(graph, origin.id, node->id,"", noconstr));
+        }
         if(distances.size() < k){
             distances.push({distance, id});
         }
@@ -133,4 +138,4 @@ std::vector<int> Algorithms::KNN(
         //based on path
     return knns;
     }
-}
+
