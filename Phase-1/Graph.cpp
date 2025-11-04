@@ -14,11 +14,9 @@ Graph::~Graph() {
 }
 
 // Add node
-void Graph::addNode(int id, double lat, double lon, const std::vector<std::string>& names) {
-    Node* node;
-    node->lat = lat;
-    node->lon = lon;
-    node->names = names;
+void Graph::addNode(int id, double lat, double lon, const std::vector<std::string>& names) { //TODO:: names to pois
+
+    Node* node = new Node(id, lat, lon, names);
 
     nodes[id] = node;
     n++;
@@ -32,23 +30,16 @@ void Graph::addNode(int id, double lat, double lon, const std::vector<std::strin
 void Graph::addEdge(int id, int u, int v, double length, double avg_time,
                     const std::vector<double>& speed_profile, bool oneway, const std::string& road_type) {
 
-    Edge *e;
-    e->id = id;
-    e->u = u;
-    e->v = v;
-    e->length = length;
-    e->average_time = avg_time;
-    e->speed_profile = speed_profile;
-    e->oneway = oneway;
-    e->road_type = road_type;
-    e->active = true;
+    Edge* e = new Edge{id, u, v, length, avg_time, speed_profile, oneway, road_type, true};
 
     edges[id] = e;
 
     // Update adjacency list
     adj_list[u].push_back(e);
-    if (!oneway)
-        adj_list[v].push_back(e);
+    if (!oneway){ 
+        Edge* reverse_e = new Edge{id, u, v, length, avg_time, speed_profile, oneway, road_type, true};
+        adj_list[v].push_back(reverse_e);
+    }
 }
 
 const Node* Graph::getNode(int id) const {
@@ -61,11 +52,15 @@ const Edge* Graph::getEdge(int u, int v) const {
 
 }
 
-void Graph::removeEdge(int edge_id) {
+bool Graph::removeEdge(int edge_id) { 
+
     auto it = edges.find(edge_id);
+    if(it == edges.end())
+        return false;
     if (it != edges.end()) {
         it->second->active = false; 
     }
+    return true;
 }
 
 void Graph::modifyEdge(int edge_id, const Edge& patch) {
