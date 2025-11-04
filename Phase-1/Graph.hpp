@@ -18,6 +18,13 @@ struct Edge{
     std::optional<bool> oneway ; // bool restricted ;
     std::string road_type ;
     bool active;
+
+    Edge() : id(-1), u(-1), v(-1), length(0.0), average_time(0.0), 
+             oneway(false), active(true) {}
+    Edge(int id, int u, int v, double length, double avg_time,
+         const std::vector<double>& sp, bool oneway, const std::string& rt, bool active)
+        : id(id), u(u), v(v), length(length), average_time(avg_time),
+          speed_profile(sp), oneway(oneway), road_type(rt), active(active) {}
 };
 
 struct Node{
@@ -25,7 +32,11 @@ struct Node{
     int id;
     double lat ; // lat 
     double lon ; // lon 
-    std::vector<std::string> names ;
+    std::vector<std::string> pois ;
+
+    Node() : id(-1), lat(0.0), lon(0.0) {}
+    Node(int id, double lat, double lon, const std::vector<std::string>& pois)
+        : id(id), lat(lat), lon(lon), pois(pois) {}
 };
 
 class Graph{
@@ -50,9 +61,9 @@ public:
     const Node* getNode(int id) const;
     const Edge* getEdge(int u, int v) const;
 
-    void removeEdge(int edge_id);
+    bool removeEdge(int edge_id);
     void modifyEdge(int edge_id, const Edge& patch);
-    void restoreEdge(int edge_id, const Edge& patch);
+    // void restoreEdge(int edge_id, const Edge& patch);
     const std::vector<Edge*>& getAdjacentEdges(int node_id) const;
     std::vector<int> getNodesWithPOI(const std::string& poi) const;
 
