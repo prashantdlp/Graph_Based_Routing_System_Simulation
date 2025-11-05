@@ -243,8 +243,29 @@ double euclidian_distance(double lat1, double lon1, double lat2, double lon2){
     return std::sqrt(deltaX_meters * deltaX_meters + deltaY_meters * deltaY_meters);
 }
 
+int getNearestNodeId (const Graph& graph, double latitude, double longitude){
+    for(int i=0; i<graph.size(); i++){
+        const Node* tempnode = graph.getNode(i);
+        if(tempnode->lat==latitude && tempnode->lon == longitude){
+            return i;
+        }
+    }
+    int nearestId =1;
+    double nearestDistance = euclidian_distance(graph.getNode(nearestId)->lat, graph.getNode(nearestId)->lon, latitude, longitude);
+    for(int i=1; i<graph.size(); i++){
+        const Node* node = graph.getNode(i);
+        if(nearestDistance> euclidian_distance(graph.getNode(i)->lat, graph.getNode(i)->lon, latitude, longitude)){
+            nearestDistance = euclidian_distance(graph.getNode(i)->lat, graph.getNode(i)->lon, latitude, longitude);
+            nearestId = i;
+        }
+    return i;
+    }
+}
+
 std::vector<int> Algorithms::KNN(
     const Graph& graph,
+    double latitude,
+    double longitude,
     const std::string& poi,
     const Node& origin,
     int k,
@@ -253,15 +274,17 @@ std::vector<int> Algorithms::KNN(
         //based on euclidian
     std::priority_queue<std::pair<double, int>> distances;
     for(auto id : graph.getNodesWithPOI(poi)){
-        if(id == origin.id){continue;}
         const Node* node = graph.getNode(id);
         double distance =0;
         if(metric == "euclidean"){
-         distance = euclidian_distance(origin.lat, origin.lon, node->lat, node->lon);   }
+         distance = euclidian_distance(latitude, longitude, node->lat, node->lon);   }
         else if (metric == "shortest_path"){
+        int nodeID = getNearestNodeId(graph, latitude, longitude);
+        const Node* origin = graph.getNode(nodeID);
         constraints noconstr;
-         distance = std::get<double>(Shortest_paths(graph, origin.id, node->id,"", noconstr));
+        distance = std::get<double>(Shortest_paths(graph, origin->id, node->id,"distance", noconstr));
         }
+        if(id == origin.id){continue;}
         if(distances.size() < k){
             distances.push({distance, id});
         }
