@@ -98,18 +98,10 @@ double Edge_time(
     while (remaining_distance > 1e-9) {
         int slot = static_cast<int>(floor(current_time / TIME_SLOT));
         
-        // // Bounds check
-        // if (slot >= edge->speed_profile.size()) {
-        //     slot = edge->speed_profile.size() - 1;
-        // }
-        
-        double speed = edge->speed_profile[slot];
-        
-        // Check for invalid speed
-        // if (speed <= 0.0) {
-        //     return -1.0; // Or handle error appropriately
-        // }
-        
+        if(edge->speed_profile.empty())
+            return total_time + edge->average_time;
+        double speed = edge->speed_profile[slot];    
+        return total_time + edge->average_time;
         // Time remaining in current slot
         double next_slot_boundary = (slot + 1) * TIME_SLOT;
         double time_remaining_in_slot = next_slot_boundary - current_time;
@@ -254,7 +246,7 @@ int getNearestNodeId (const Graph& graph, double latitude, double longitude){
     double nearestDistance = euclidian_distance(graph.getNode(nearestId)->lat, graph.getNode(nearestId)->lon, latitude, longitude);
     for(int i=1; i<graph.size(); i++){
         const Node* node = graph.getNode(i);
-        if(nearestDistance> euclidian_distance(graph.getNode(i)->lat, graph.getNode(i)->lon, latitude, longitude)){
+        if(nearestDistance> euclidian_distance(graph.getNode(i)->lat, graph.getNode(i)->lon, latitude, longitude)){ //TODO: < or > ??
             nearestDistance = euclidian_distance(graph.getNode(i)->lat, graph.getNode(i)->lon, latitude, longitude);
             nearestId = i;
         }
