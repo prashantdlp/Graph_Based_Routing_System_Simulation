@@ -2,11 +2,12 @@
 #include <iostream>
 #include <fstream>
 #include <chrono>
-#include "Graph.h"
+#include "Graph.hpp"
+#include <Algorithms.hpp>
 
 using json = nlohmann::json;
 
-void process_graph_file(const std::ifstream& graph_file, Graph& G) 
+void process_graph_file(std::ifstream& graph_file, Graph& G) 
 {
     json graph_json;
     graph_file >> graph_json;
@@ -14,7 +15,7 @@ void process_graph_file(const std::ifstream& graph_file, Graph& G)
     
     // Number of nodes (optional, but we can resize in advance)
     int num_nodes = graph_json["meta"]["nodes"];
-    G = Graph(num_nodes);
+    G = Graph();
 
     // --- Parse nodes ---
     for (auto& node_json : graph_json["nodes"]) 
@@ -44,16 +45,19 @@ void process_graph_file(const std::ifstream& graph_file, Graph& G)
     }
 }
 
-json process_query(const json& query) 
+json process_query(const json& query, std::ifstream& graph_file, Graph& G) 
 {
     json result ;
-
+    json graph_json; 
+    graph_file >> graph_json;
+    graph_file.close();
+    
     if(query["type"] == "remove_edge")
     {
         int id = query["edge_id"];
         result["done"] = G.removeEdge(id); 
     }
-    else if (query["patch"]["type"] == "modify_edge")
+    else if (query["type"] == "modify_edge")
     {
         int id = query["patch"]["edge_id"];
         Edge patch;
