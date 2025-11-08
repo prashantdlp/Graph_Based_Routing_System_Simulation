@@ -48,6 +48,7 @@ class Graph{
     std::unordered_map<int, Node*> nodes; // node ids -> Node
     std::unordered_map<int, Edge*> edges; // edge ids -> Edge
     std::unordered_map<int, std::vector< Edge*>> adj_list; // nodes ids -> vector of edge ids
+    std::unordered_map<int, std::vector< Edge*>> inc_list; // nodes ids -> vector of edge ids for incoming edges
     std::unordered_map<std::string, std::vector<int>> poi_index; // poi -> vector of node ids
     // adj_matrix[u][v] gives pointer to edge from u to v
     // std::vector<std::vector<Edge*>> adj_matrix ;
@@ -65,6 +66,7 @@ public:
     void modifyEdge(int edge_id, const Edge& patch);
     // void restoreEdge(int edge_id, const Edge& patch);
     const std::vector<Edge*>& getAdjacentEdges(int node_id) const;
+    const std::vector<Edge*>& getIncomingEdges(int node_id) const;
     std::vector<int> getNodesWithPOI(const std::string& poi) const;
 
     double getEdgeWeight(int edge_id, const std::string& mode, int time_slot = -1) const; //TODO: ??
