@@ -1,0 +1,14 @@
+{
+  "meta": {
+    "id": "debug_single_query"
+  },
+  "events": [
+    {
+      "type": "shortest_path",
+      "id": 203,
+      "source": 71,
+      "target": 20,
+      "mode": "time"
+    }
+  ]
+}

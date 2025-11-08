@@ -1,0 +1,92 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build-debug",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                "-O0",
+                "-std=c++17",
+                "-Wall",
+                "-Wextra",
+                "${workspaceFolder}/SampleDriver.cpp",
+                "${workspaceFolder}/Graph.cpp",
+                "${workspaceFolder}/Algorithms.cpp",
+                "-o",
+                "${workspaceFolder}/phase1",
+                "-I/usr/include/nlohmann",
+                "-I${workspaceFolder}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Build with debug symbols (-g -O0)",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            }
+        },
+        {
+            "label": "build-release",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-O3",
+                "-std=c++17",
+                "-Wall",
+                "-Wextra",
+                "SampleDriver.cpp",
+                "Graph.cpp",
+                "Algorithms.cpp",
+                "-o",
+                "phase1",
+                "-I/usr/include/nlohmann",
+                "-I."
+            ],
+            "group": "build",
+            "problemMatcher": ["$gcc"],
+            "detail": "Build optimized release version"
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "rm",
+            "args": [
+                "-f",
+                "phase1",
+                "testcases/phase1/test1/output.json",
+                "testcases/debug_output.json"
+            ],
+            "problemMatcher": [],
+            "detail": "Clean build artifacts"
+        },
+        {
+            "label": "run-with-output",
+            "type": "shell",
+            "command": "./phase1",
+            "args": [
+                "testcases/graph.json",
+                "testcases/queries.json",
+                "testcases/phase1/test1/output.json"
+            ],
+            "dependsOn": ["build-debug"],
+            "problemMatcher": [],
+            "detail": "Build and run with debug output"
+        },
+        {
+            "label": "build-and-run",
+            "dependsOn": ["build-debug", "run-with-output"],
+            "dependsOrder": "sequence",
+            "problemMatcher": [],
+            "detail": "Build and immediately run the program"
+        }
+    ]
+}

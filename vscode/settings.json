@@ -1,0 +1,48 @@
+{
+    "C_Cpp.default.cppStandard": "c++17",
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/**",
+        "/usr/include/nlohmann"
+    ],
+    "C_Cpp.default.compilerPath": "/usr/bin/g++",
+    "C_Cpp.default.intelliSenseMode": "linux-gcc-x64",
+    
+    "files.associations": {
+        "*.hpp": "cpp",
+        "*.cpp": "cpp",
+        "*.json": "json",
+        "iostream": "cpp",
+        "vector": "cpp",
+        "map": "cpp",
+        "set": "cpp",
+        "queue": "cpp",
+        "algorithm": "cpp",
+        "optional": "cpp",
+        "string": "cpp",
+        "tuple": "cpp",
+        "chrono": "cpp"
+    },
+    
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    
+    "C_Cpp.errorSquiggles": "enabled",
+    "C_Cpp.autocomplete": "default",
+    
+    "debug.console.fontSize": 12,
+    "debug.console.lineHeight": 18,
+    "debug.console.wordWrap": true,
+    
+    "terminal.integrated.fontSize": 12,
+    
+    "files.exclude": {
+        "**/*.o": true,
+        "**/phase1": false
+    },
+    
+    "search.exclude": {
+        "**/*.json": false,
+        "**/testcases/**": false
+    }
+}

@@ -1,0 +1,136 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Launch Phase 1 - No Build",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/phase1",
+            "args": [
+                "${workspaceFolder}/testcases/graph.json",
+                "${workspaceFolder}/testcases/queries.json",
+                "${workspaceFolder}/testcases/phase1/test1/output.json"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "miDebuggerPath": "/usr/bin/gdb",
+            "logging": {
+                "moduleLoad": false,
+                "trace": false,
+                "engineLogging": false,
+                "programOutput": true,
+                "exceptions": true
+            }
+        },
+        {
+            "name": "(gdb) Launch Phase 1",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/phase1",
+            "args": [
+                "${workspaceFolder}/testcases/graph.json",
+                "${workspaceFolder}/testcases/queries.json",
+                "${workspaceFolder}/testcases/phase1/test1/output.json"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "build-debug",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "logging": {
+                "moduleLoad": false,
+                "trace": false,
+                "engineLogging": false,
+                "programOutput": true,
+                "exceptions": true
+            }
+        },
+        {
+            "name": "(lldb) Launch Phase 1 (Mac)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/phase1",
+            "args": [
+                "testcases/graph.json",
+                "testcases/queries.json",
+                "testcases/phase1/test1/output.json"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "build-debug"
+        },
+        {
+            "name": "(gdb) Attach to Process",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "${workspaceFolder}/phase1",
+            "processId": "${command:pickProcess}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "(gdb) Debug Single Query",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/phase1",
+            "args": [
+                "${workspaceFolder}/testcases/graph.json",
+                "${workspaceFolder}/testcases/single_query.json",
+                "${workspaceFolder}/testcases/debug_output.json"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "build-debug"
+        }
+    ]
+}
+
+
