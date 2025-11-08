@@ -1,26 +1,172 @@
 {
-"meta": { "id": "qset1" },
-"events": [
-        { 
-            "type": "remove_edge",
-            "edge_id": 1001 
-        },{
-            "type": "shortest_path",
-            "id": 1,
-            "source": 10,
-            "target": 250,
-            "mode": "time",
-            "constraints": {
-                "forbidden_nodes": [5],
-                "forbidden_road_types": ["primary"] 
-                }
-        },{
-            "type": "knn",
-                "id": 2,
-                "poi" : "restaurant",
-            "query_point": { "lat": 19.07, "lon": 72.87 },
-            "k": 5,
-            "metric": "shortest_path"
-        }
-    ]
+  "meta": {
+    "id": "generated_knn_queries_1"
+  },
+  "events": [
+    {
+      "type": "knn",
+      "id": 200,
+      "poi": "petrol station",
+      "query_point": {
+        "lat": 19.159474980910403,
+        "lon": 72.91927286977834
+      },
+      "k": 5,
+      "metric": "euclidean"
+    },
+    {
+      "type": "knn",
+      "id": 201,
+      "poi": "hotel",
+      "query_point": {
+        "lat": 19.081594826627036,
+        "lon": 72.81982408037571
+      },
+      "k": 2,
+      "metric": "shortest_path"
+    },
+    {
+      "type": "knn",
+      "id": 202,
+      "poi": "library",
+      "query_point": {
+        "lat": 19.17382339689691,
+        "lon": 72.99418120896125
+      },
+      "k": 3,
+      "metric": "euclidean"
+    },
+    {
+      "type": "knn",
+      "id": 203,
+      "poi": "restaurant",
+      "query_point": {
+        "lat": 19.001297458312365,
+        "lon": 72.95241136036098
+      },
+      "k": 110,
+      "metric": "shortest_path"
+    },
+    {
+      "type": "knn",
+      "id": 204,
+      "poi": "atm",
+      "query_point": {
+        "lat": 19.067799127924562,
+        "lon": 72.99079273868074
+      },
+      "k": 5,
+      "metric": "euclidean"
+    },
+    {
+      "type": "knn",
+      "id": 205,
+      "poi": "restaurant",
+      "query_point": {
+        "lat": 19.147006669306506,
+        "lon": 72.85125641756673
+      },
+      "k": 2,
+      "metric": "shortest_path"
+    },
+    {
+      "type": "knn",
+      "id": 206,
+      "poi": "library",
+      "query_point": {
+        "lat": 19.068349666662435,
+        "lon": 72.92480750004938
+      },
+      "k": 3,
+      "metric": "euclidean"
+    },
+    {
+      "type": "knn",
+      "id": 207,
+      "poi": "atm",
+      "query_point": {
+        "lat": 19.0562975489465,
+        "lon": 72.92343188963224
+      },
+      "k": 110,
+      "metric": "shortest_path"
+    },
+    {
+      "type": "knn",
+      "id": 208,
+      "poi": "atm",
+      "query_point": {
+        "lat": 19.08408409188646,
+        "lon": 72.93456813231727
+      },
+      "k": 1,
+      "metric": "euclidean"
+    },
+    {
+      "type": "knn",
+      "id": 209,
+      "poi": "atm",
+      "query_point": {
+        "lat": 19.028751326696487,
+        "lon": 72.80831557335556
+      },
+      "k": 5,
+      "metric": "shortest_path"
+    },
+    {
+      "type": "knn",
+      "id": 210,
+      "poi": "library",
+      "query_point": {
+        "lat": 19.191792155142316,
+        "lon": 72.99044320046887
+      },
+      "k": 3,
+      "metric": "euclidean"
+    },
+    {
+      "type": "knn",
+      "id": 211,
+      "poi": "atm",
+      "query_point": {
+        "lat": 19.165085595746245,
+        "lon": 72.84379918834794
+      },
+      "k": 110,
+      "metric": "shortest_path"
+    },
+    {
+      "type": "knn",
+      "id": 212,
+      "poi": "pharmacy",
+      "query_point": {
+        "lat": 19.008632938437348,
+        "lon": 72.84254874040663
+      },
+      "k": 4,
+      "metric": "euclidean"
+    },
+    {
+      "type": "knn",
+      "id": 213,
+      "poi": "pharmacy",
+      "query_point": {
+        "lat": 19.16997017765152,
+        "lon": 72.86897036537722
+      },
+      "k": 5,
+      "metric": "shortest_path"
+    },
+    {
+      "type": "knn",
+      "id": 214,
+      "poi": "library",
+      "query_point": {
+        "lat": 19.067764551357378,
+        "lon": 72.90224958003017
+      },
+      "k": 3,
+      "metric": "euclidean"
+    }
+  ]
 }

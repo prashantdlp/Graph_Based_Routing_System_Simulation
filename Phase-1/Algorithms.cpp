@@ -215,10 +215,8 @@ std::tuple<bool, double, std::vector<int>> Algorithms::Shortest_paths(
         if(mode == "distance"){
             return Shortest_paths_distance(graph, source, target, constraints);
         }
-        else if(mode == "time"){
-                return Shortest_paths_speed(graph, source, target, constraints);
-        }
-        return;
+        return Shortest_paths_speed(graph, source, target, constraints);
+        
     }
 
 double euclidian_distance(double lat1, double lon1, double lat2, double lon2){
@@ -246,8 +244,10 @@ int getNearestNodeId (const Graph& graph, double latitude, double longitude){
     double nearestDistance = euclidian_distance(graph.getNode(nearestId)->lat, graph.getNode(nearestId)->lon, latitude, longitude);
     for(int i=1; i<graph.size(); i++){
         const Node* node = graph.getNode(i);
-        if(nearestDistance> euclidian_distance(graph.getNode(i)->lat, graph.getNode(i)->lon, latitude, longitude)){ //TODO: < or > ??
-            nearestDistance = euclidian_distance(graph.getNode(i)->lat, graph.getNode(i)->lon, latitude, longitude);
+
+        if(nearestDistance> euclidian_distance(node->lat, node->lon, latitude, longitude)){
+            nearestDistance = euclidian_distance(node->lat, node->lon, latitude, longitude);
+
             nearestId = i;
         }
     return i;
@@ -259,7 +259,6 @@ std::vector<int> Algorithms::KNN(
     double latitude,
     double longitude,
     const std::string& poi,
-    const Node& origin,
     int k,
     const std::string& metric
     ){
@@ -275,9 +274,10 @@ std::vector<int> Algorithms::KNN(
         const Node* origin = graph.getNode(nodeID);
         constraints noconstr;
         distance = std::get<double>(Shortest_paths(graph, origin->id, node->id,"distance", noconstr));
-        }
-        if(id == origin.id){continue;}
-        if(distances.size() < k){
+        if(id == nodeID){continue;}    
+    }
+        
+        if((int)distances.size() < k){
             distances.push({distance, id});
         }
         else if(distance <distances.top().first ){

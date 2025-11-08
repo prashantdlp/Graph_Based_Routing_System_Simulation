@@ -1,69 +1,3035 @@
 {
- 	"meta": {
-    		"id": "sample_testcase_1",
-    		"nodes": 3,
-   		    "description": "Instructor-provided map for course project"
-  	},
-    "nodes": [
-    		{
-                "id": 0, 
-                "lat": 19.070000,
-                "lon": 72.870000,
-                "pois": ["Restaurant", "Hospital"] 
-            },{
-                "id": 1, 
-                "lat": 19.071000,
-                "lon": 72.871000,
-                "pois": ["School"] 
-            },{
-                "id": 2, 
-                "lat": 19.072000,
-                "lon": 72.872000,
-                "pois": ["Home"] 
-            },{
-                "id": 3, 
-                "lat": 19.073000,
-                "lon": 72.873000,
-                "pois": ["Police Station"] 
-            }             
-  	],
-  	"edges": [
-    		{
-      		"id": 1001,
-      		"u": 1,
-      		"v": 2,
-      		"length": 100.0,
-      		"average_time": 5.5,
-      		"speed_profile": [40, 42, 39, 45], 
-     		"oneway": false,
-            "road_type": "primary"
-        },{
-      		"id": 1001,
-      		"u": 2,
-      		"v": 3,
-      		"length": 100.0,
-      		"average_time": 5.5,
-      		"speed_profile": [40, 42, 39, 45], 
-     		"oneway": false,
-            "road_type": "primary"
-        },{
-      		"id": 1001,
-      		"u": 3,
-      		"v": 4,
-      		"length": 100.0,
-      		"average_time": 5.5,
-      		"speed_profile": [40, 42, 39, 45], 
-     		"oneway": false,
-            "road_type": "primary"
-        },{
-      		"id": 1001,
-      		"u": 4,
-      		"v": 1,
-      		"length": 100.0,
-      		"average_time": 5.5,
-      		"speed_profile": [40, 42, 39, 45], 
-     		"oneway": false,
-            "road_type": "primary"
-        }
+  "meta": {
+    "id": "generated_graph_knn",
+    "nodes": 100,
+    "description": "Auto-generated test graph for KNN"
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "lat": 19.199058854453853,
+      "lon": 72.98388660126258,
+      "pois": [
+        "hotel",
+        "restaurant"
+      ]
+    },
+    {
+      "id": 1,
+      "lat": 19.06604166827297,
+      "lon": 72.91317404370541,
+      "pois": []
+    },
+    {
+      "id": 2,
+      "lat": 19.106161704427915,
+      "lon": 72.91210229101749,
+      "pois": []
+    },
+    {
+      "id": 3,
+      "lat": 19.044160196832777,
+      "lon": 72.82751885720177,
+      "pois": [
+        "hotel"
+      ]
+    },
+    {
+      "id": 4,
+      "lat": 19.16672341462244,
+      "lon": 72.86503556592133,
+      "pois": [
+        "hotel",
+        "restaurant"
+      ]
+    },
+    {
+      "id": 5,
+      "lat": 19.04166780631492,
+      "lon": 72.98566482155631,
+      "pois": [
+        "petrol station",
+        "hospital"
+      ]
+    },
+    {
+      "id": 6,
+      "lat": 19.067084952182416,
+      "lon": 72.9103229485278,
+      "pois": [
+        "hotel"
+      ]
+    },
+    {
+      "id": 7,
+      "lat": 19.079175612739746,
+      "lon": 72.86795840720971,
+      "pois": [
+        "hotel",
+        "hospital"
+      ]
+    },
+    {
+      "id": 8,
+      "lat": 19.182824315781616,
+      "lon": 72.92685898420761,
+      "pois": [
+        "petrol station"
+      ]
+    },
+    {
+      "id": 9,
+      "lat": 19.035132662991874,
+      "lon": 72.97833237339286,
+      "pois": [
+        "hospital"
+      ]
+    },
+    {
+      "id": 10,
+      "lat": 19.17274126948844,
+      "lon": 72.81591573002936,
+      "pois": [
+        "hospital",
+        "restaurant"
+      ]
+    },
+    {
+      "id": 11,
+      "lat": 19.164197571192634,
+      "lon": 72.8269767707668,
+      "pois": [
+        "hotel",
+        "petrol station"
+      ]
+    },
+    {
+      "id": 12,
+      "lat": 19.141428136887477,
+      "lon": 72.88196959064727,
+      "pois": []
+    },
+    {
+      "id": 13,
+      "lat": 19.023667564873058,
+      "lon": 72.95807757291077,
+      "pois": []
+    },
+    {
+      "id": 14,
+      "lat": 19.04606630620073,
+      "lon": 72.8634780206523,
+      "pois": [
+        "hospital",
+        "pharmacy"
+      ]
+    },
+    {
+      "id": 15,
+      "lat": 19.181811354723095,
+      "lon": 72.84057220004242,
+      "pois": [
+        "hospital"
+      ]
+    },
+    {
+      "id": 16,
+      "lat": 19.03518165322325,
+      "lon": 72.96125406335487,
+      "pois": [
+        "pharmacy",
+        "restaurant"
+      ]
+    },
+    {
+      "id": 17,
+      "lat": 19.069971600748097,
+      "lon": 72.95243556542135,
+      "pois": [
+        "hospital",
+        "pharmacy"
+      ]
+    },
+    {
+      "id": 18,
+      "lat": 19.04830561693245,
+      "lon": 72.80816844934708,
+      "pois": []
+    },
+    {
+      "id": 19,
+      "lat": 19.04062094274422,
+      "lon": 72.85458571384332,
+      "pois": []
+    },
+    {
+      "id": 20,
+      "lat": 19.048511789156958,
+      "lon": 72.93796755706379,
+      "pois": [
+        "restaurant"
+      ]
+    },
+    {
+      "id": 21,
+      "lat": 19.04867746417557,
+      "lon": 72.94023932733357,
+      "pois": []
+    },
+    {
+      "id": 22,
+      "lat": 19.039978271962394,
+      "lon": 72.87542365681693,
+      "pois": [
+        "pharmacy",
+        "hospital"
+      ]
+    },
+    {
+      "id": 23,
+      "lat": 19.137228483112768,
+      "lon": 72.9042886621628,
+      "pois": [
+        "restaurant"
+      ]
+    },
+    {
+      "id": 24,
+      "lat": 19.069170367149667,
+      "lon": 72.8879476889223,
+      "pois": [
+        "pharmacy"
+      ]
+    },
+    {
+      "id": 25,
+      "lat": 19.087565444778956,
+      "lon": 72.8161902856803,
+      "pois": []
+    },
+    {
+      "id": 26,
+      "lat": 19.073496175512574,
+      "lon": 72.86265918830861,
+      "pois": []
+    },
+    {
+      "id": 27,
+      "lat": 19.031185208329088,
+      "lon": 72.92779761190923,
+      "pois": [
+        "hotel"
+      ]
+    },
+    {
+      "id": 28,
+      "lat": 19.071937861815996,
+      "lon": 72.91198782066678,
+      "pois": [
+        "pharmacy"
+      ]
+    },
+    {
+      "id": 29,
+      "lat": 19.101612274731796,
+      "lon": 72.80610266054556,
+      "pois": [
+        "hotel"
+      ]
+    },
+    {
+      "id": 30,
+      "lat": 19.142243556749097,
+      "lon": 72.85084965309464,
+      "pois": [
+        "restaurant"
+      ]
+    },
+    {
+      "id": 31,
+      "lat": 19.1227202810188,
+      "lon": 72.80920641055557,
+      "pois": []
+    },
+    {
+      "id": 32,
+      "lat": 19.052997062985533,
+      "lon": 72.95503200075159,
+      "pois": []
+    },
+    {
+      "id": 33,
+      "lat": 19.157505726081236,
+      "lon": 72.94907404511069,
+      "pois": [
+        "petrol station",
+        "hospital"
+      ]
+    },
+    {
+      "id": 34,
+      "lat": 19.025376361333876,
+      "lon": 72.86803068389882,
+      "pois": [
+        "petrol station"
+      ]
+    },
+    {
+      "id": 35,
+      "lat": 19.07146806746812,
+      "lon": 72.88531131098819,
+      "pois": [
+        "petrol station",
+        "restaurant"
+      ]
+    },
+    {
+      "id": 36,
+      "lat": 19.025412510583465,
+      "lon": 72.88550632959783,
+      "pois": []
+    },
+    {
+      "id": 37,
+      "lat": 19.053852826160064,
+      "lon": 72.8159079451092,
+      "pois": [
+        "petrol station",
+        "atm"
+      ]
+    },
+    {
+      "id": 38,
+      "lat": 19.096360642566523,
+      "lon": 72.8320677594501,
+      "pois": []
+    },
+    {
+      "id": 39,
+      "lat": 19.074111568380786,
+      "lon": 72.88509260026248,
+      "pois": [
+        "restaurant"
+      ]
+    },
+    {
+      "id": 40,
+      "lat": 19.002133747138846,
+      "lon": 72.87227137128313,
+      "pois": [
+        "atm"
+      ]
+    },
+    {
+      "id": 41,
+      "lat": 19.011360787265538,
+      "lon": 72.83093951554812,
+      "pois": [
+        "hotel",
+        "pharmacy"
+      ]
+    },
+    {
+      "id": 42,
+      "lat": 19.019585759023606,
+      "lon": 72.95417995196472,
+      "pois": [
+        "hospital",
+        "pharmacy"
+      ]
+    },
+    {
+      "id": 43,
+      "lat": 19.19328695524549,
+      "lon": 72.82987056741617,
+      "pois": []
+    },
+    {
+      "id": 44,
+      "lat": 19.074435825946225,
+      "lon": 72.84251412516393,
+      "pois": [
+        "restaurant",
+        "atm"
+      ]
+    },
+    {
+      "id": 45,
+      "lat": 19.060194625611043,
+      "lon": 72.8145896199883,
+      "pois": []
+    },
+    {
+      "id": 46,
+      "lat": 19.033019222703754,
+      "lon": 72.9176949854348,
+      "pois": []
+    },
+    {
+      "id": 47,
+      "lat": 19.04374226571201,
+      "lon": 72.9714049809289,
+      "pois": []
+    },
+    {
+      "id": 48,
+      "lat": 19.17309462787292,
+      "lon": 72.90208584084823,
+      "pois": [
+        "hotel"
+      ]
+    },
+    {
+      "id": 49,
+      "lat": 19.185949470868536,
+      "lon": 72.99343156811072,
+      "pois": []
+    },
+    {
+      "id": 50,
+      "lat": 19.114162214774367,
+      "lon": 72.91863582407463,
+      "pois": [
+        "hotel",
+        "restaurant"
+      ]
+    },
+    {
+      "id": 51,
+      "lat": 19.024562310885784,
+      "lon": 72.93426679236113,
+      "pois": [
+        "hospital",
+        "petrol station"
+      ]
+    },
+    {
+      "id": 52,
+      "lat": 19.1411401682552,
+      "lon": 72.82865204637797,
+      "pois": [
+        "pharmacy"
+      ]
+    },
+    {
+      "id": 53,
+      "lat": 19.17996731237279,
+      "lon": 72.8811527149856,
+      "pois": [
+        "atm"
+      ]
+    },
+    {
+      "id": 54,
+      "lat": 19.13007248315949,
+      "lon": 72.9267439156795,
+      "pois": []
+    },
+    {
+      "id": 55,
+      "lat": 19.18986216891762,
+      "lon": 72.91303398703032,
+      "pois": [
+        "petrol station",
+        "hotel"
+      ]
+    },
+    {
+      "id": 56,
+      "lat": 19.195438551814075,
+      "lon": 72.92419579904102,
+      "pois": []
+    },
+    {
+      "id": 57,
+      "lat": 19.038805648238355,
+      "lon": 72.88874567995687,
+      "pois": [
+        "hospital"
+      ]
+    },
+    {
+      "id": 58,
+      "lat": 19.115824793804208,
+      "lon": 72.80798844587217,
+      "pois": []
+    },
+    {
+      "id": 59,
+      "lat": 19.032717881920714,
+      "lon": 72.87136950528365,
+      "pois": [
+        "atm",
+        "restaurant"
+      ]
+    },
+    {
+      "id": 60,
+      "lat": 19.178386514701433,
+      "lon": 72.93536320789899,
+      "pois": [
+        "hotel"
+      ]
+    },
+    {
+      "id": 61,
+      "lat": 19.0815981197013,
+      "lon": 72.85485618661971,
+      "pois": [
+        "hotel"
+      ]
+    },
+    {
+      "id": 62,
+      "lat": 19.02583227648647,
+      "lon": 72.80476620092786,
+      "pois": [
+        "pharmacy",
+        "atm"
+      ]
+    },
+    {
+      "id": 63,
+      "lat": 19.1877069542708,
+      "lon": 72.84330589013155,
+      "pois": [
+        "hospital"
+      ]
+    },
+    {
+      "id": 64,
+      "lat": 19.088525405268623,
+      "lon": 72.9107480201725,
+      "pois": []
+    },
+    {
+      "id": 65,
+      "lat": 19.06946938583961,
+      "lon": 72.89476890673072,
+      "pois": []
+    },
+    {
+      "id": 66,
+      "lat": 19.0225527577637,
+      "lon": 72.95642280312325,
+      "pois": [
+        "hotel"
+      ]
+    },
+    {
+      "id": 67,
+      "lat": 19.030735678502484,
+      "lon": 72.9578336668309,
+      "pois": [
+        "hospital",
+        "restaurant"
+      ]
+    },
+    {
+      "id": 68,
+      "lat": 19.182716870154263,
+      "lon": 72.90867984383729,
+      "pois": [
+        "pharmacy"
+      ]
+    },
+    {
+      "id": 69,
+      "lat": 19.076845608516592,
+      "lon": 72.97361271312694,
+      "pois": [
+        "petrol station",
+        "pharmacy"
+      ]
+    },
+    {
+      "id": 70,
+      "lat": 19.029489208177868,
+      "lon": 72.9431497508977,
+      "pois": [
+        "pharmacy",
+        "restaurant"
+      ]
+    },
+    {
+      "id": 71,
+      "lat": 19.067947373124476,
+      "lon": 72.80339201028083,
+      "pois": [
+        "pharmacy"
+      ]
+    },
+    {
+      "id": 72,
+      "lat": 19.00798970662549,
+      "lon": 72.9816448898036,
+      "pois": [
+        "restaurant"
+      ]
+    },
+    {
+      "id": 73,
+      "lat": 19.006009245122442,
+      "lon": 72.8274023545484,
+      "pois": [
+        "hospital"
+      ]
+    },
+    {
+      "id": 74,
+      "lat": 19.099002965293153,
+      "lon": 72.90916909245853,
+      "pois": [
+        "hospital",
+        "restaurant"
+      ]
+    },
+    {
+      "id": 75,
+      "lat": 19.11693211968426,
+      "lon": 72.93298042128073,
+      "pois": []
+    },
+    {
+      "id": 76,
+      "lat": 19.17673773650273,
+      "lon": 72.92506590539195,
+      "pois": []
+    },
+    {
+      "id": 77,
+      "lat": 19.156250376628996,
+      "lon": 72.80743876376782,
+      "pois": []
+    },
+    {
+      "id": 78,
+      "lat": 19.073801161787188,
+      "lon": 72.93614581693089,
+      "pois": [
+        "petrol station",
+        "hotel"
+      ]
+    },
+    {
+      "id": 79,
+      "lat": 19.19241553266188,
+      "lon": 72.96994895531398,
+      "pois": []
+    },
+    {
+      "id": 80,
+      "lat": 19.133140357925207,
+      "lon": 72.81877257101311,
+      "pois": [
+        "atm"
+      ]
+    },
+    {
+      "id": 81,
+      "lat": 19.16341585504515,
+      "lon": 72.91643244510017,
+      "pois": [
+        "hospital"
+      ]
+    },
+    {
+      "id": 82,
+      "lat": 19.028768525022056,
+      "lon": 72.82818940001432,
+      "pois": []
+    },
+    {
+      "id": 83,
+      "lat": 19.095844761785187,
+      "lon": 72.9871273252059,
+      "pois": [
+        "pharmacy",
+        "restaurant"
+      ]
+    },
+    {
+      "id": 84,
+      "lat": 19.122630996676595,
+      "lon": 72.84354591880133,
+      "pois": [
+        "atm",
+        "petrol station"
+      ]
+    },
+    {
+      "id": 85,
+      "lat": 19.146908251659987,
+      "lon": 72.81491934947005,
+      "pois": []
+    },
+    {
+      "id": 86,
+      "lat": 19.084402573304807,
+      "lon": 72.92146827729485,
+      "pois": [
+        "atm",
+        "petrol station"
+      ]
+    },
+    {
+      "id": 87,
+      "lat": 19.083755049279883,
+      "lon": 72.86328089973662,
+      "pois": [
+        "atm",
+        "restaurant"
+      ]
+    },
+    {
+      "id": 88,
+      "lat": 19.024455826028092,
+      "lon": 72.89078464182877,
+      "pois": []
+    },
+    {
+      "id": 89,
+      "lat": 19.085762142237037,
+      "lon": 72.89173766398368,
+      "pois": [
+        "restaurant",
+        "hospital"
+      ]
+    },
+    {
+      "id": 90,
+      "lat": 19.048832735666206,
+      "lon": 72.92395677801673,
+      "pois": [
+        "atm",
+        "hotel"
+      ]
+    },
+    {
+      "id": 91,
+      "lat": 19.186866228359758,
+      "lon": 72.97805863311187,
+      "pois": [
+        "petrol station"
+      ]
+    },
+    {
+      "id": 92,
+      "lat": 19.197747265223022,
+      "lon": 72.92289413932895,
+      "pois": []
+    },
+    {
+      "id": 93,
+      "lat": 19.17684134863955,
+      "lon": 72.8424494797702,
+      "pois": [
+        "hotel",
+        "restaurant"
+      ]
+    },
+    {
+      "id": 94,
+      "lat": 19.018324469025057,
+      "lon": 72.95125788470085,
+      "pois": [
+        "pharmacy",
+        "atm"
+      ]
+    },
+    {
+      "id": 95,
+      "lat": 19.19089556349272,
+      "lon": 72.81620786265492,
+      "pois": [
+        "atm",
+        "hospital"
+      ]
+    },
+    {
+      "id": 96,
+      "lat": 19.096051107497704,
+      "lon": 72.95191441493284,
+      "pois": [
+        "atm",
+        "pharmacy"
+      ]
+    },
+    {
+      "id": 97,
+      "lat": 19.126812582558617,
+      "lon": 72.90691260695746,
+      "pois": [
+        "restaurant"
+      ]
+    },
+    {
+      "id": 98,
+      "lat": 19.175032089731122,
+      "lon": 72.85791853563585,
+      "pois": [
+        "petrol station"
+      ]
+    },
+    {
+      "id": 99,
+      "lat": 19.194571168782662,
+      "lon": 72.983301077703,
+      "pois": [
+        "atm"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": 1000,
+      "u": 0,
+      "v": 1,
+      "length": 16551.5,
+      "average_time": 1947.65,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1001,
+      "u": 1,
+      "v": 2,
+      "length": 4462.57,
+      "average_time": 342.89,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1002,
+      "u": 2,
+      "v": 3,
+      "length": 11249.08,
+      "average_time": 893.04,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1003,
+      "u": 3,
+      "v": 4,
+      "length": 14187.03,
+      "average_time": 1108.62,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1004,
+      "u": 4,
+      "v": 5,
+      "length": 18815.16,
+      "average_time": 1484.45,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1005,
+      "u": 5,
+      "v": 6,
+      "length": 8407.87,
+      "average_time": 671.36,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1006,
+      "u": 6,
+      "v": 7,
+      "length": 4650.68,
+      "average_time": 291.15,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1007,
+      "u": 7,
+      "v": 8,
+      "length": 13081.23,
+      "average_time": 930.77,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1008,
+      "u": 8,
+      "v": 9,
+      "length": 17290.15,
+      "average_time": 1314.19,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1009,
+      "u": 9,
+      "v": 10,
+      "length": 22920.65,
+      "average_time": 1562.6,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1010,
+      "u": 10,
+      "v": 11,
+      "length": 1500.72,
+      "average_time": 137.82,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1011,
+      "u": 11,
+      "v": 12,
+      "length": 6306.94,
+      "average_time": 465.78,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1012,
+      "u": 12,
+      "v": 13,
+      "length": 15343.64,
+      "average_time": 1715.25,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1013,
+      "u": 13,
+      "v": 14,
+      "length": 10250.98,
+      "average_time": 1156.43,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1014,
+      "u": 14,
+      "v": 15,
+      "length": 15284.81,
+      "average_time": 942.11,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1015,
+      "u": 15,
+      "v": 16,
+      "length": 20654.63,
+      "average_time": 2316.19,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1016,
+      "u": 16,
+      "v": 17,
+      "length": 3977.95,
+      "average_time": 257.6,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1017,
+      "u": 17,
+      "v": 18,
+      "length": 15352.6,
+      "average_time": 1485.98,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1018,
+      "u": 18,
+      "v": 19,
+      "length": 4953.12,
+      "average_time": 578.47,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1019,
+      "u": 19,
+      "v": 20,
+      "length": 8807.97,
+      "average_time": 529.53,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1020,
+      "u": 20,
+      "v": 21,
+      "length": 239.49,
+      "average_time": 14.37,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1021,
+      "u": 21,
+      "v": 22,
+      "length": 6881.03,
+      "average_time": 624.63,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1022,
+      "u": 22,
+      "v": 23,
+      "length": 11231.06,
+      "average_time": 1125.29,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1023,
+      "u": 23,
+      "v": 24,
+      "length": 7760.05,
+      "average_time": 666.72,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1024,
+      "u": 24,
+      "v": 25,
+      "length": 7813.28,
+      "average_time": 545.35,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1025,
+      "u": 25,
+      "v": 26,
+      "length": 5127.7,
+      "average_time": 555.7,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1026,
+      "u": 26,
+      "v": 27,
+      "length": 8307.02,
+      "average_time": 808.82,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1027,
+      "u": 27,
+      "v": 28,
+      "length": 4826.55,
+      "average_time": 328.7,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1028,
+      "u": 28,
+      "v": 29,
+      "length": 11605.57,
+      "average_time": 836.31,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1029,
+      "u": 29,
+      "v": 30,
+      "length": 6520.17,
+      "average_time": 430.06,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1030,
+      "u": 30,
+      "v": 31,
+      "length": 4883.76,
+      "average_time": 320.95,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1031,
+      "u": 31,
+      "v": 32,
+      "length": 17173.17,
+      "average_time": 1452.12,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1032,
+      "u": 32,
+      "v": 33,
+      "length": 11637.68,
+      "average_time": 800.61,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1033,
+      "u": 33,
+      "v": 34,
+      "length": 16981.75,
+      "average_time": 1355.61,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1034,
+      "u": 34,
+      "v": 35,
+      "length": 5437.49,
+      "average_time": 347.35,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1035,
+      "u": 35,
+      "v": 36,
+      "length": 5121.19,
+      "average_time": 323.41,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1036,
+      "u": 36,
+      "v": 37,
+      "length": 7969.88,
+      "average_time": 658.73,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1037,
+      "u": 37,
+      "v": 38,
+      "length": 5022.47,
+      "average_time": 505.44,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1038,
+      "u": 38,
+      "v": 39,
+      "length": 6096.54,
+      "average_time": 487.58,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1039,
+      "u": 39,
+      "v": 40,
+      "length": 8116.24,
+      "average_time": 522.36,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1040,
+      "u": 40,
+      "v": 41,
+      "length": 4464.81,
+      "average_time": 306.02,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1041,
+      "u": 41,
+      "v": 42,
+      "length": 12988.15,
+      "average_time": 997.96,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1042,
+      "u": 42,
+      "v": 43,
+      "length": 23316.31,
+      "average_time": 1939.98,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1043,
+      "u": 43,
+      "v": 44,
+      "length": 13282.22,
+      "average_time": 927.23,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1044,
+      "u": 44,
+      "v": 45,
+      "length": 3334.68,
+      "average_time": 246.14,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1045,
+      "u": 45,
+      "v": 46,
+      "length": 11250.54,
+      "average_time": 960.53,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1046,
+      "u": 46,
+      "v": 47,
+      "length": 5770.14,
+      "average_time": 669.25,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1047,
+      "u": 47,
+      "v": 48,
+      "length": 16122.21,
+      "average_time": 1067.95,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1048,
+      "u": 48,
+      "v": 49,
+      "length": 9699.3,
+      "average_time": 674.25,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1049,
+      "u": 49,
+      "v": 50,
+      "length": 11200.25,
+      "average_time": 672.9,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1050,
+      "u": 50,
+      "v": 51,
+      "length": 10097.57,
+      "average_time": 673.93,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1051,
+      "u": 51,
+      "v": 52,
+      "length": 17064.93,
+      "average_time": 1519.01,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1052,
+      "u": 52,
+      "v": 53,
+      "length": 7003.46,
+      "average_time": 464.07,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1053,
+      "u": 53,
+      "v": 54,
+      "length": 7328.97,
+      "average_time": 876.79,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1054,
+      "u": 54,
+      "v": 55,
+      "length": 6802.48,
+      "average_time": 441.61,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1055,
+      "u": 55,
+      "v": 56,
+      "length": 1326.06,
+      "average_time": 105.41,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1056,
+      "u": 56,
+      "v": 57,
+      "length": 17810.56,
+      "average_time": 1261.31,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1057,
+      "u": 57,
+      "v": 58,
+      "length": 12056.82,
+      "average_time": 748.98,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1058,
+      "u": 58,
+      "v": 59,
+      "length": 11391.33,
+      "average_time": 1085.82,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1059,
+      "u": 59,
+      "v": 60,
+      "length": 17537.74,
+      "average_time": 1852.46,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1060,
+      "u": 60,
+      "v": 61,
+      "length": 13687.96,
+      "average_time": 1369.19,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1061,
+      "u": 61,
+      "v": 62,
+      "length": 8134.31,
+      "average_time": 871.25,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1062,
+      "u": 62,
+      "v": 63,
+      "length": 18449.51,
+      "average_time": 1782.89,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1063,
+      "u": 63,
+      "v": 64,
+      "length": 13108.06,
+      "average_time": 993.67,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1064,
+      "u": 64,
+      "v": 65,
+      "length": 2703.62,
+      "average_time": 226.44,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1065,
+      "u": 65,
+      "v": 66,
+      "length": 8319.27,
+      "average_time": 526.85,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1066,
+      "u": 66,
+      "v": 67,
+      "length": 921.91,
+      "average_time": 60.19,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1067,
+      "u": 67,
+      "v": 68,
+      "length": 17671.08,
+      "average_time": 1669.06,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1068,
+      "u": 68,
+      "v": 69,
+      "length": 13605.92,
+      "average_time": 1307.47,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1069,
+      "u": 69,
+      "v": 70,
+      "length": 6162.78,
+      "average_time": 625.16,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1070,
+      "u": 70,
+      "v": 71,
+      "length": 15299.19,
+      "average_time": 936.14,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1071,
+      "u": 71,
+      "v": 72,
+      "length": 19887.47,
+      "average_time": 1399.32,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1072,
+      "u": 72,
+      "v": 73,
+      "length": 16217.39,
+      "average_time": 1600.97,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1073,
+      "u": 73,
+      "v": 74,
+      "length": 13445.48,
+      "average_time": 1218.57,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1074,
+      "u": 74,
+      "v": 75,
+      "length": 3199.01,
+      "average_time": 356.27,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1075,
+      "u": 75,
+      "v": 76,
+      "length": 6701.85,
+      "average_time": 437.88,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1076,
+      "u": 76,
+      "v": 77,
+      "length": 12562.8,
+      "average_time": 1128.1,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1077,
+      "u": 77,
+      "v": 78,
+      "length": 16337.33,
+      "average_time": 1783.24,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1078,
+      "u": 78,
+      "v": 79,
+      "length": 13659.0,
+      "average_time": 1538.35,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1079,
+      "u": 79,
+      "v": 80,
+      "length": 17192.22,
+      "average_time": 1222.79,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1080,
+      "u": 80,
+      "v": 81,
+      "length": 10796.73,
+      "average_time": 884.39,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1081,
+      "u": 81,
+      "v": 82,
+      "length": 17610.73,
+      "average_time": 1400.55,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1082,
+      "u": 82,
+      "v": 83,
+      "length": 18293.51,
+      "average_time": 1113.02,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1083,
+      "u": 83,
+      "v": 84,
+      "length": 15376.98,
+      "average_time": 1491.55,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1084,
+      "u": 84,
+      "v": 85,
+      "length": 4041.16,
+      "average_time": 357.39,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1085,
+      "u": 85,
+      "v": 86,
+      "length": 13176.56,
+      "average_time": 918.29,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1086,
+      "u": 86,
+      "v": 87,
+      "length": 6114.96,
+      "average_time": 605.24,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1087,
+      "u": 87,
+      "v": 88,
+      "length": 7199.59,
+      "average_time": 535.62,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1088,
+      "u": 88,
+      "v": 89,
+      "length": 6817.69,
+      "average_time": 714.01,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1089,
+      "u": 89,
+      "v": 90,
+      "length": 5322.36,
+      "average_time": 567.28,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1090,
+      "u": 90,
+      "v": 91,
+      "length": 16367.31,
+      "average_time": 1299.48,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1091,
+      "u": 91,
+      "v": 92,
+      "length": 5918.09,
+      "average_time": 648.98,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1092,
+      "u": 92,
+      "v": 93,
+      "length": 8762.13,
+      "average_time": 967.05,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1093,
+      "u": 93,
+      "v": 94,
+      "length": 21009.52,
+      "average_time": 1371.34,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1094,
+      "u": 94,
+      "v": 95,
+      "length": 23865.64,
+      "average_time": 2308.22,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1095,
+      "u": 95,
+      "v": 96,
+      "length": 17732.45,
+      "average_time": 1185.24,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1096,
+      "u": 96,
+      "v": 97,
+      "length": 5835.71,
+      "average_time": 635.88,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1097,
+      "u": 97,
+      "v": 98,
+      "length": 7431.95,
+      "average_time": 537.58,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1098,
+      "u": 98,
+      "v": 99,
+      "length": 13345.66,
+      "average_time": 1057.0,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1099,
+      "u": 65,
+      "v": 26,
+      "length": 3404.04,
+      "average_time": 366.86,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1100,
+      "u": 97,
+      "v": 32,
+      "length": 9640.37,
+      "average_time": 718.88,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1101,
+      "u": 39,
+      "v": 5,
+      "length": 11168.84,
+      "average_time": 934.45,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1102,
+      "u": 99,
+      "v": 48,
+      "length": 8857.25,
+      "average_time": 539.92,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1103,
+      "u": 16,
+      "v": 97,
+      "length": 11680.04,
+      "average_time": 1388.89,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1104,
+      "u": 19,
+      "v": 59,
+      "length": 1970.96,
+      "average_time": 227.91,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1105,
+      "u": 68,
+      "v": 37,
+      "length": 17329.77,
+      "average_time": 1604.8,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1106,
+      "u": 15,
+      "v": 49,
+      "length": 16059.91,
+      "average_time": 1672.54,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1107,
+      "u": 36,
+      "v": 83,
+      "length": 13243.97,
+      "average_time": 1010.93,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1108,
+      "u": 49,
+      "v": 3,
+      "length": 23503.83,
+      "average_time": 1725.85,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1109,
+      "u": 47,
+      "v": 49,
+      "length": 15981.17,
+      "average_time": 1794.35,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1110,
+      "u": 54,
+      "v": 12,
+      "length": 4870.12,
+      "average_time": 349.6,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1111,
+      "u": 44,
+      "v": 74,
+      "length": 7518.09,
+      "average_time": 856.49,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1112,
+      "u": 25,
+      "v": 43,
+      "length": 11843.21,
+      "average_time": 1319.15,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1113,
+      "u": 71,
+      "v": 22,
+      "length": 8184.62,
+      "average_time": 725.97,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1114,
+      "u": 64,
+      "v": 94,
+      "length": 8891.66,
+      "average_time": 716.32,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1115,
+      "u": 99,
+      "v": 47,
+      "length": 16817.91,
+      "average_time": 1657.13,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1116,
+      "u": 20,
+      "v": 13,
+      "length": 3478.51,
+      "average_time": 227.32,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1117,
+      "u": 76,
+      "v": 38,
+      "length": 13240.93,
+      "average_time": 1337.18,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1118,
+      "u": 28,
+      "v": 3,
+      "length": 9399.67,
+      "average_time": 632.0,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1119,
+      "u": 85,
+      "v": 29,
+      "length": 5121.15,
+      "average_time": 311.8,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1120,
+      "u": 28,
+      "v": 31,
+      "length": 12186.92,
+      "average_time": 879.53,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1121,
+      "u": 41,
+      "v": 10,
+      "length": 18014.0,
+      "average_time": 1173.58,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1122,
+      "u": 64,
+      "v": 54,
+      "length": 4916.03,
+      "average_time": 298.02,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1123,
+      "u": 40,
+      "v": 88,
+      "length": 3154.17,
+      "average_time": 267.4,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1124,
+      "u": 60,
+      "v": 15,
+      "length": 9962.48,
+      "average_time": 665.52,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1125,
+      "u": 66,
+      "v": 64,
+      "length": 8766.93,
+      "average_time": 679.82,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1126,
+      "u": 39,
+      "v": 67,
+      "length": 9039.61,
+      "average_time": 745.52,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1127,
+      "u": 80,
+      "v": 27,
+      "length": 16117.86,
+      "average_time": 1928.11,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1128,
+      "u": 14,
+      "v": 3,
+      "length": 3785.55,
+      "average_time": 331.13,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1129,
+      "u": 90,
+      "v": 46,
+      "length": 1877.53,
+      "average_time": 202.63,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1130,
+      "u": 80,
+      "v": 86,
+      "length": 12074.54,
+      "average_time": 1130.72,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1131,
+      "u": 92,
+      "v": 9,
+      "length": 18996.86,
+      "average_time": 1674.82,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1132,
+      "u": 37,
+      "v": 82,
+      "length": 3073.49,
+      "average_time": 240.62,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1133,
+      "u": 33,
+      "v": 97,
+      "length": 5591.37,
+      "average_time": 491.35,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1134,
+      "u": 54,
+      "v": 79,
+      "length": 8285.5,
+      "average_time": 716.73,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1135,
+      "u": 9,
+      "v": 63,
+      "length": 22115.4,
+      "average_time": 2400.48,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1136,
+      "u": 67,
+      "v": 22,
+      "length": 8723.24,
+      "average_time": 626.2,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1137,
+      "u": 77,
+      "v": 53,
+      "length": 8179.02,
+      "average_time": 709.46,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1138,
+      "u": 64,
+      "v": 32,
+      "length": 6104.57,
+      "average_time": 526.88,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1139,
+      "u": 4,
+      "v": 41,
+      "length": 17643.15,
+      "average_time": 1654.82,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1140,
+      "u": 6,
+      "v": 71,
+      "length": 11238.22,
+      "average_time": 1282.1,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1141,
+      "u": 6,
+      "v": 97,
+      "length": 6651.07,
+      "average_time": 666.97,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1142,
+      "u": 31,
+      "v": 49,
+      "length": 20588.49,
+      "average_time": 1282.91,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1143,
+      "u": 64,
+      "v": 87,
+      "length": 5016.08,
+      "average_time": 388.45,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1144,
+      "u": 99,
+      "v": 34,
+      "length": 22374.79,
+      "average_time": 2309.21,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1145,
+      "u": 61,
+      "v": 71,
+      "length": 5617.31,
+      "average_time": 347.59,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1146,
+      "u": 69,
+      "v": 45,
+      "length": 16814.54,
+      "average_time": 1890.61,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1147,
+      "u": 92,
+      "v": 69,
+      "length": 14460.95,
+      "average_time": 1348.16,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1148,
+      "u": 31,
+      "v": 11,
+      "length": 4975.51,
+      "average_time": 455.56,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1149,
+      "u": 15,
+      "v": 5,
+      "length": 21799.7,
+      "average_time": 2363.42,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1150,
+      "u": 70,
+      "v": 48,
+      "length": 16540.85,
+      "average_time": 1726.58,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1151,
+      "u": 15,
+      "v": 9,
+      "length": 21806.34,
+      "average_time": 1494.97,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1152,
+      "u": 19,
+      "v": 91,
+      "length": 20802.25,
+      "average_time": 1344.28,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1153,
+      "u": 35,
+      "v": 4,
+      "length": 10804.0,
+      "average_time": 778.46,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1154,
+      "u": 89,
+      "v": 40,
+      "length": 9521.49,
+      "average_time": 832.63,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1155,
+      "u": 13,
+      "v": 62,
+      "length": 16118.08,
+      "average_time": 1276.13,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1156,
+      "u": 95,
+      "v": 71,
+      "length": 13737.35,
+      "average_time": 927.71,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1157,
+      "u": 8,
+      "v": 45,
+      "length": 18029.34,
+      "average_time": 1670.06,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1158,
+      "u": 98,
+      "v": 34,
+      "length": 16674.84,
+      "average_time": 1169.99,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1159,
+      "u": 27,
+      "v": 50,
+      "length": 9276.72,
+      "average_time": 753.3,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1160,
+      "u": 43,
+      "v": 88,
+      "length": 19834.14,
+      "average_time": 1247.48,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1161,
+      "u": 40,
+      "v": 82,
+      "length": 5499.75,
+      "average_time": 431.21,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1162,
+      "u": 17,
+      "v": 1,
+      "length": 4149.22,
+      "average_time": 339.53,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1163,
+      "u": 47,
+      "v": 67,
+      "length": 2031.42,
+      "average_time": 126.86,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1164,
+      "u": 58,
+      "v": 50,
+      "length": 11626.53,
+      "average_time": 1304.08,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1165,
+      "u": 83,
+      "v": 81,
+      "length": 10564.63,
+      "average_time": 633.47,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1166,
+      "u": 21,
+      "v": 64,
+      "length": 5407.28,
+      "average_time": 455.97,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1167,
+      "u": 89,
+      "v": 81,
+      "length": 9016.03,
+      "average_time": 561.63,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1168,
+      "u": 95,
+      "v": 99,
+      "length": 17551.97,
+      "average_time": 1435.73,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1169,
+      "u": 81,
+      "v": 50,
+      "length": 5481.64,
+      "average_time": 346.3,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1170,
+      "u": 60,
+      "v": 56,
+      "length": 2229.49,
+      "average_time": 231.75,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1171,
+      "u": 58,
+      "v": 77,
+      "length": 4495.49,
+      "average_time": 388.8,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1172,
+      "u": 58,
+      "v": 43,
+      "length": 8914.8,
+      "average_time": 768.13,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1173,
+      "u": 10,
+      "v": 38,
+      "length": 8660.98,
+      "average_time": 582.64,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1174,
+      "u": 49,
+      "v": 28,
+      "length": 15294.64,
+      "average_time": 1739.58,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1175,
+      "u": 69,
+      "v": 1,
+      "length": 6464.21,
+      "average_time": 469.87,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1176,
+      "u": 24,
+      "v": 76,
+      "length": 12580.58,
+      "average_time": 1136.3,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1177,
+      "u": 78,
+      "v": 50,
+      "length": 4850.45,
+      "average_time": 295.01,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1178,
+      "u": 26,
+      "v": 16,
+      "length": 11204.18,
+      "average_time": 699.74,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1179,
+      "u": 83,
+      "v": 69,
+      "length": 2545.57,
+      "average_time": 293.35,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1180,
+      "u": 8,
+      "v": 60,
+      "length": 1020.39,
+      "average_time": 90.41,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1181,
+      "u": 91,
+      "v": 87,
+      "length": 16638.52,
+      "average_time": 1417.94,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1182,
+      "u": 94,
+      "v": 81,
+      "length": 16543.24,
+      "average_time": 1882.86,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1183,
+      "u": 22,
+      "v": 93,
+      "length": 15607.86,
+      "average_time": 1024.35,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1184,
+      "u": 9,
+      "v": 14,
+      "length": 12133.54,
+      "average_time": 973.43,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1185,
+      "u": 10,
+      "v": 28,
+      "length": 15083.5,
+      "average_time": 992.54,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1186,
+      "u": 52,
+      "v": 64,
+      "length": 10422.32,
+      "average_time": 635.37,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1187,
+      "u": 32,
+      "v": 55,
+      "length": 15845.42,
+      "average_time": 1639.61,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1188,
+      "u": 74,
+      "v": 10,
+      "length": 12774.86,
+      "average_time": 1115.11,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1189,
+      "u": 46,
+      "v": 86,
+      "length": 5727.31,
+      "average_time": 531.36,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1190,
+      "u": 46,
+      "v": 32,
+      "length": 4509.58,
+      "average_time": 351.79,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1191,
+      "u": 78,
+      "v": 65,
+      "length": 4374.96,
+      "average_time": 293.19,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1192,
+      "u": 58,
+      "v": 72,
+      "length": 21837.41,
+      "average_time": 1579.92,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1193,
+      "u": 26,
+      "v": 5,
+      "length": 13403.63,
+      "average_time": 931.7,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1194,
+      "u": 17,
+      "v": 53,
+      "length": 14341.51,
+      "average_time": 876.64,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1195,
+      "u": 70,
+      "v": 84,
+      "length": 14725.09,
+      "average_time": 902.39,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1196,
+      "u": 54,
+      "v": 45,
+      "length": 14115.78,
+      "average_time": 1405.76,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1197,
+      "u": 90,
+      "v": 68,
+      "length": 14973.51,
+      "average_time": 974.79,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1198,
+      "u": 11,
+      "v": 82,
+      "length": 15059.56,
+      "average_time": 1058.71,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1199,
+      "u": 65,
+      "v": 98,
+      "length": 12360.01,
+      "average_time": 957.51,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1200,
+      "u": 75,
+      "v": 68,
+      "length": 7747.51,
+      "average_time": 578.34,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1201,
+      "u": 8,
+      "v": 51,
+      "length": 17615.14,
+      "average_time": 1062.74,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1202,
+      "u": 54,
+      "v": 87,
+      "length": 8425.41,
+      "average_time": 677.16,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1203,
+      "u": 90,
+      "v": 25,
+      "length": 12116.85,
+      "average_time": 726.57,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1204,
+      "u": 34,
+      "v": 47,
+      "length": 11056.43,
+      "average_time": 1217.73,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1205,
+      "u": 64,
+      "v": 28,
+      "length": 1849.05,
+      "average_time": 120.45,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1206,
+      "u": 46,
+      "v": 8,
+      "length": 16685.37,
+      "average_time": 1394.41,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1207,
+      "u": 83,
+      "v": 70,
+      "length": 8706.49,
+      "average_time": 775.59,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1208,
+      "u": 91,
+      "v": 98,
+      "length": 12685.79,
+      "average_time": 807.28,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1209,
+      "u": 50,
+      "v": 40,
+      "length": 13376.17,
+      "average_time": 1407.63,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1210,
+      "u": 5,
+      "v": 70,
+      "length": 4669.62,
+      "average_time": 534.11,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1211,
+      "u": 42,
+      "v": 47,
+      "length": 3239.36,
+      "average_time": 332.3,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1212,
+      "u": 24,
+      "v": 72,
+      "length": 11969.89,
+      "average_time": 1203.97,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1213,
+      "u": 83,
+      "v": 99,
+      "length": 10985.23,
+      "average_time": 1088.52,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1214,
+      "u": 49,
+      "v": 22,
+      "length": 20424.92,
+      "average_time": 1701.12,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1215,
+      "u": 73,
+      "v": 64,
+      "length": 12685.77,
+      "average_time": 1249.18,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1216,
+      "u": 59,
+      "v": 38,
+      "length": 8193.97,
+      "average_time": 903.41,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1217,
+      "u": 23,
+      "v": 81,
+      "length": 3179.05,
+      "average_time": 236.64,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1218,
+      "u": 23,
+      "v": 26,
+      "length": 8327.87,
+      "average_time": 749.76,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1219,
+      "u": 78,
+      "v": 21,
+      "length": 2826.56,
+      "average_time": 195.27,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1220,
+      "u": 90,
+      "v": 32,
+      "length": 3298.81,
+      "average_time": 269.34,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1221,
+      "u": 82,
+      "v": 89,
+      "length": 9207.13,
+      "average_time": 1021.93,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1222,
+      "u": 46,
+      "v": 42,
+      "length": 4115.92,
+      "average_time": 312.03,
+      "oneway": false,
+      "road_type": "primary"
+    },
+    {
+      "id": 1223,
+      "u": 35,
+      "v": 72,
+      "length": 12343.16,
+      "average_time": 1335.45,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1224,
+      "u": 92,
+      "v": 73,
+      "length": 23563.26,
+      "average_time": 1687.2,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1225,
+      "u": 86,
+      "v": 5,
+      "length": 8252.31,
+      "average_time": 517.29,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1226,
+      "u": 37,
+      "v": 27,
+      "length": 12027.78,
+      "average_time": 971.49,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1227,
+      "u": 60,
+      "v": 97,
+      "length": 6466.71,
+      "average_time": 398.8,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1228,
+      "u": 96,
+      "v": 87,
+      "length": 9413.43,
+      "average_time": 998.0,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1229,
+      "u": 66,
+      "v": 76,
+      "length": 17458.31,
+      "average_time": 1878.2,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1230,
+      "u": 66,
+      "v": 7,
+      "length": 11229.2,
+      "average_time": 749.38,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1231,
+      "u": 96,
+      "v": 57,
+      "length": 9197.3,
+      "average_time": 724.1,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1232,
+      "u": 94,
+      "v": 45,
+      "length": 15101.09,
+      "average_time": 1106.87,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1233,
+      "u": 85,
+      "v": 92,
+      "length": 12671.22,
+      "average_time": 1469.8,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1234,
+      "u": 35,
+      "v": 32,
+      "length": 7609.88,
+      "average_time": 483.52,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1235,
+      "u": 11,
+      "v": 73,
+      "length": 17589.8,
+      "average_time": 1523.44,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1236,
+      "u": 97,
+      "v": 88,
+      "length": 11507.06,
+      "average_time": 857.83,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1237,
+      "u": 56,
+      "v": 8,
+      "length": 1430.25,
+      "average_time": 103.27,
+      "oneway": false,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1238,
+      "u": 60,
+      "v": 29,
+      "length": 16039.22,
+      "average_time": 1652.91,
+      "oneway": false,
+      "road_type": "local"
+    },
+    {
+      "id": 1239,
+      "u": 41,
+      "v": 15,
+      "length": 18980.25,
+      "average_time": 1450.96,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1240,
+      "u": 26,
+      "v": 74,
+      "length": 5650.71,
+      "average_time": 511.25,
+      "oneway": false,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1241,
+      "u": 88,
+      "v": 70,
+      "length": 5532.99,
+      "average_time": 365.22,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1242,
+      "u": 92,
+      "v": 43,
+      "length": 9781.24,
+      "average_time": 1012.35,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1243,
+      "u": 59,
+      "v": 2,
+      "length": 9220.5,
+      "average_time": 656.56,
+      "oneway": true,
+      "road_type": "tertiary"
+    },
+    {
+      "id": 1244,
+      "u": 58,
+      "v": 15,
+      "length": 8096.4,
+      "average_time": 691.12,
+      "oneway": true,
+      "road_type": "local"
+    },
+    {
+      "id": 1245,
+      "u": 38,
+      "v": 24,
+      "length": 6604.75,
+      "average_time": 670.77,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1246,
+      "u": 52,
+      "v": 19,
+      "length": 11504.63,
+      "average_time": 710.37,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1247,
+      "u": 50,
+      "v": 25,
+      "length": 11163.14,
+      "average_time": 717.07,
+      "oneway": true,
+      "road_type": "primary"
+    },
+    {
+      "id": 1248,
+      "u": 74,
+      "v": 29,
+      "length": 10833.42,
+      "average_time": 968.54,
+      "oneway": true,
+      "road_type": "secondary"
+    },
+    {
+      "id": 1249,
+      "u": 47,
+      "v": 13,
+      "length": 2635.4,
+      "average_time": 206.54,
+      "oneway": false,
+      "road_type": "tertiary"
+    }
   ]
 }

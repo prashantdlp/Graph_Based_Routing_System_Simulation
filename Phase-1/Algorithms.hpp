@@ -26,7 +26,6 @@ public:
         double latitude,
         double longitude,
         const std::string& poi,
-        const Node& node,
         int k,
         const std::string& metric
     );

@@ -3,10 +3,11 @@
 #include <fstream>
 #include <chrono>
 #include "Graph.hpp"
+#include <Algorithms.hpp>
 
 using json = nlohmann::json;
 
-void process_graph_file(const std::ifstream& graph_file, Graph& G) 
+void process_graph_file(std::ifstream& graph_file, Graph& G) 
 {
     json graph_json;
     graph_file >> graph_json;
@@ -14,7 +15,7 @@ void process_graph_file(const std::ifstream& graph_file, Graph& G)
     
     // Number of nodes (optional, but we can resize in advance)
     int num_nodes = graph_json["meta"]["nodes"];
-    G = Graph(num_nodes);
+    G = Graph();
 
     // --- Parse nodes ---
     for (auto& node_json : graph_json["nodes"]) 
@@ -29,8 +30,9 @@ void process_graph_file(const std::ifstream& graph_file, Graph& G)
     // --- Parse edges ---
     for (auto& edge_json : graph_json["edges"]) 
     {
-        int u = edge_json["u"];
-        int v = edge_json["v"];
+        int id = edge_json["id"];
+        int u  =  edge_json["u"];
+        int v  =  edge_json["v"];
         double length = edge_json["length"];
         double avg_time = edge_json["average_time"];
         std::vector<double> speed_profile;
@@ -40,11 +42,11 @@ void process_graph_file(const std::ifstream& graph_file, Graph& G)
         }
         bool oneway = edge_json["oneway"];
         std::string road_type = edge_json["road_type"];
-        G.addEdge(u, v, length, avg_time, speed_profile, oneway, road_type);
+        G.addEdge(id, u, v, length, avg_time, speed_profile, oneway, road_type);
     }
 }
 
-json process_query(const json& query) 
+json process_query(const json& query, std::ifstream& graph_file, Graph& G) 
 {
     json result ;
     Algorithms A;
@@ -53,7 +55,7 @@ json process_query(const json& query)
         int id = query["edge_id"];
         result["done"] = G.removeEdge(id); 
     }
-    else if (query["patch"]["type"] == "modify_edge")
+    else if (query["type"] == "modify_edge")
     {
         int id = query["patch"]["edge_id"];
         Edge patch;
@@ -120,11 +122,9 @@ json process_query(const json& query)
         int k = query["k"];
         std::string metric = query["metric"];
 
-        auto nodes = A.KNN(G, poi,lat ,lon, k, metric);
-        result = {
-            {"id": query["id"]},
-            {"nodes": nodes}
-        };
+        auto nodes = A.KNN(G, lat ,lon,poi, k, metric);
+        result["id"] = query["id"];
+        result["nodes"] = nodes;
     }
 
     return result;
@@ -142,8 +142,8 @@ int main(int argc, char* argv[])
     std::ifstream graph_file(argv[1]);
     if (!graph_file.is_open()) 
     {
-        std::cerr << "Failed to open " << filename << std::endl;
-        return;
+        std::cerr << "Failed to open " << argv[1] << std::endl;
+        return 0 ;
     }
 
     Graph G ;
@@ -160,12 +160,6 @@ int main(int argc, char* argv[])
     queries_file >> queries_json;
     queries_file.close();
     
-    std::ofstream output_file("output.json");
-    if (!output_file.is_open()) 
-    {
-        std::cerr << "Failed to open output.json for writing" << std::endl;
-        return 1;
-    }
 
     json meta = queries_json["meta"];
     std::vector<json> results;
@@ -173,7 +167,7 @@ int main(int argc, char* argv[])
     for (const auto& query : queries_json["events"]) {
         auto start_time = std::chrono::high_resolution_clock::now();
 
-        json result = process_query(query);
+        json result = process_query(query,graph_file, G);
 
         auto end_time = std::chrono::high_resolution_clock::now();
         result["processing_time"] = std::chrono::duration<double, std::milli>(end_time - start_time).count();
