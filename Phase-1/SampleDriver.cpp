@@ -3,7 +3,7 @@
 #include <fstream>
 #include <chrono>
 #include "Graph.hpp"
-#include <Algorithms.hpp>
+#include "Algorithms.hpp"
 
 using json = nlohmann::json;
 
@@ -49,14 +49,8 @@ void process_graph_file(std::ifstream& graph_file, Graph& G)
 json process_query(const json& query, std::ifstream& graph_file,Graph& G) 
 {
     json result ;
-<<<<<<< Updated upstream
     Algorithms A;
-=======
-    // json graph_json;
-    // graph_file >> graph_json;
-    // graph_file.close();
-    
->>>>>>> Stashed changes
+
     if(query["type"] == "remove_edge")
     {
         int id = query["edge_id"];
@@ -64,7 +58,7 @@ json process_query(const json& query, std::ifstream& graph_file,Graph& G)
     }
     else if (query["type"] == "modify_edge")
     {
-        int id = query["patch"]["edge_id"];
+        int id = query["edge_id"];
         Edge patch;
         if (query["patch"].contains("length")) 
         {
@@ -86,6 +80,7 @@ json process_query(const json& query, std::ifstream& graph_file,Graph& G)
         {
             patch.road_type = query["patch"]["road_type"];
         }
+        result["id"]   = query["id"];
         result["done"] = G.modifyEdge(id, patch); 
     }
     else if(query["type"] == "shortest_path")
@@ -129,9 +124,12 @@ json process_query(const json& query, std::ifstream& graph_file,Graph& G)
         int k = query["k"];
         std::string metric = query["metric"];
 
-        auto nodes = A.KNN(G, lat ,lon,poi, k, metric);
+        std::vector<int> nodes = A.KNN(G, lat ,lon,poi, k, metric);
         result["id"] = query["id"];
-        result["nodes"] = nodes;
+        result["nodes"] = json::array();
+        for(int i=0; i<nodes.size(); i++){
+            result["nodes"].push_back(nodes[i]);
+        }
     }
 
     return result;
