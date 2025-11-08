@@ -36,9 +36,11 @@ void Graph::addEdge(int id, int u, int v, double length, double avg_time,
 
     // Update adjacency list
     adj_list[u].push_back(e);
+    inc_list[v].push_back(e);
     if (!oneway){ 
         Edge* reverse_e = new Edge{id, u, v, length, avg_time, speed_profile, oneway, road_type, true};
         adj_list[v].push_back(reverse_e);
+        inc_list[v].push_back(e);
     }
 }
 
@@ -83,6 +85,11 @@ const std::vector<Edge*>& Graph::getAdjacentEdges(int node_id) const {
     return std::vector<Edge*>{};
 }
 
+const std::vector<Edge*>& Graph::getIncomingEdges(int node_id) const {
+    auto it = inc_list.find(node_id); //
+    if (it != inc_list.end()) return it->second;
+    return std::vector<Edge*>{};
+}
 std::vector<int> Graph::getNodesWithPOI(const std::string& poi) const {
     auto it = poi_index.find(poi);
     if (it == poi_index.end()) return std::vector<int>{};
