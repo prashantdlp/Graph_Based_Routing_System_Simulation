@@ -48,47 +48,47 @@ json process_query(const json& query)
 {
     json result ;
 
-    if(query["events"]["type"] == "remove_edge")
+    if(query["type"] == "remove_edge")
     {
-        int id = query["events"]["edge_id"];
+        int id = query["edge_id"];
         result["done"] = G.removeEdge(id); 
     }
-    else if (query["events"]["patch"]["type"] == "modify_edge")
+    else if (query["patch"]["type"] == "modify_edge")
     {
-        int id = query["events"]["patch"]["edge_id"];
+        int id = query["patch"]["edge_id"];
         Edge patch;
-        if (query["events"]["patch"].contains("length")) 
+        if (query["patch"].contains("length")) 
         {
-            patch.length = query["events"]["patch"]["length"];
+            patch.length = query["patch"]["length"];
         }
-        if (query["events"]["patch"].contains("average_time")) 
+        if (query["patch"].contains("average_time")) 
         {
-            patch.average_time = query["events"]["patch"]["average_time"];
+            patch.average_time = query["patch"]["average_time"];
         }
-        if (query["events"]["patch"].contains("speed_profile")) 
+        if (query["patch"].contains("speed_profile")) 
         {
-            patch.speed_profile = query["events"]["patch"]["speed_profile"].get<std::vector<double>>();
+            patch.speed_profile = query["patch"]["speed_profile"].get<std::vector<double>>();
         }
-        if (query["events"]["patch"].contains("oneway")) 
+        if (query["patch"].contains("oneway")) 
         {
-            patch.oneway = query["events"]["patch"]["oneway"];
+            patch.oneway = query["patch"]["oneway"];
         }
-        if (query["events"]["patch"].contains("road_type")) 
+        if (query["patch"].contains("road_type")) 
         {
-            patch.road_type = query["events"]["patch"]["road_type"];
+            patch.road_type = query["patch"]["road_type"];
         }
         result["done"] = G.modifyEdge(id, patch); 
     }
-    else if(query["events"]["type"] == "shortest_path")
+    else if(query["type"] == "shortest_path")
     {
-        int source = query["events"]["source"];
-        int target = query["events"]["target"];
-        std::string mode = query["events"]["mode"];
+        int source = query["source"];
+        int target = query["target"];
+        std::string mode = query["mode"];
 
         constraints cons;
-        if (query["events"].contains("constraints")) 
+        if (query.contains("constraints")) 
         {
-            const auto& c = query["events"]["constraints"];
+            const auto& c = query["constraints"];
             if (c.contains("forbidden_nodes")) 
             {
                 for (auto& node : c["forbidden_nodes"]) 
@@ -106,23 +106,23 @@ json process_query(const json& query)
         }
         auto [found, cost, path] = Shortest_paths(G, source, target, mode, cons);
         
-        result["id"] = query["events"]["id"];
+        result["id"] = query["id"];
         result["possible"] = found;
         result["mode"] = cost;
         result["path"] = path;
 
     }
-    else if(query["events"]["type"] == "knn")
+    else if(query["type"] == "knn")
     {
-        std::string poi = query["events"]["poi"];
-        double lat = query["events"]["query_point"]["lat"];
-        double lon = query["events"]["query_point"]["lon"];
-        int k = query["events"]["k"];
-        std::string metric = query["events"]["metric"];
+        std::string poi = query["poi"];
+        double lat = query["query_point"]["lat"];
+        double lon = query["query_point"]["lon"];
+        int k = query["k"];
+        std::string metric = query["metric"];
 
         auto nodes = KNN(G, poi,lat ,lon, k, metric);
         result = {
-            {"id": query["events"]["id"]},
+            {"id": query["id"]},
             {"nodes": nodes}
         };
     }
@@ -167,9 +167,10 @@ int main(int argc, char* argv[])
         return 1;
     }
 
+    json meta = queries_json["meta"];
     std::vector<json> results;
 
-    for (const auto& query : queries_json) {
+    for (const auto& query : queries_json["events"]) {
         auto start_time = std::chrono::high_resolution_clock::now();
 
         json result = process_query(query);
@@ -185,9 +186,10 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    json output = results;
+    json output;
+    output["meta"] = meta;
+    output["results"] = results;
     output_file << output.dump(4) << std::endl;
-
     output_file.close();
     return 0;
 }
