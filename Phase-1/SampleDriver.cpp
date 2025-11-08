@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <chrono>
-#include "Phase-1/Graph.h"
+#include "Graph.h"
 
 using json = nlohmann::json;
 
