@@ -46,10 +46,17 @@ void process_graph_file(std::ifstream& graph_file, Graph& G)
     }
 }
 
-json process_query(const json& query, std::ifstream& graph_file, Graph& G) 
+json process_query(const json& query, std::ifstream& graph_file,Graph& G) 
 {
     json result ;
+<<<<<<< Updated upstream
     Algorithms A;
+=======
+    // json graph_json;
+    // graph_file >> graph_json;
+    // graph_file.close();
+    
+>>>>>>> Stashed changes
     if(query["type"] == "remove_edge")
     {
         int id = query["edge_id"];

@@ -32,81 +32,43 @@ PHASE3_EXEC = phase3
 # --- Build Targets ---
 
 # The default target when you just type 'make'
-# .PHONY ensures this target runs even if a file named 'all' exists
+# This builds all three phase executables
 .PHONY: all
 all: $(PHASE1_EXEC) $(PHASE2_EXEC) $(PHASE3_EXEC)
 
 # Rule to build the 'phase1' executable
 # It depends on all the object files from the Phase-1 directory
 $(PHASE1_EXEC): $(PHASE1_OBJS)
-	@echo "Linking $@..."
-	# The $^ variable automatically gets all dependencies (all .o files)
-	$(CXX) $(CPPFLAGS) -o $@ $^ $(LDFLAGS)
+    @echo "Linking $@..."
+    # The $^ variable automatically gets all dependencies (all .o files)
+    $(CXX) $(CPPFLAGS) -o $@ $^ $(LDFLAGS)
 
 # Rule to build the 'phase2' executable
 $(PHASE2_EXEC): $(PHASE2_OBJS)
-	@echo "Linking $@..."
-	$(CXX) $(CPPFLAGS) -o $@ $^ $(LDFLAGS)
+    @echo "Linking $@..."
+    $(CXX) $(CPPFLAGS) -o $@ $^ $(LDFLAGS)
 
 # Rule to build the 'phase3' executable
 $(PHASE3_EXEC): $(PHASE3_OBJS)
-	@echo "Linking $@..."
-	$(CXX) $(CPPFLAGS) -o $@ $^ $(LDFLAGS)
+    @echo "Linking $@..."
+    $(CXX) $(CPPFLAGS) -o $@ $^ $(LDFLAGS)
 
 # --- Pattern Rule for Compilation ---
 # This is a generic rule that tells 'make' how to build
 # any .o file from a corresponding .cpp file.
 # The .o files will be created in the same directory as their .cpp files.
 %.o: %.cpp
-	@echo "Compiling $<..."
-	# $< is the source file (.cpp), $@ is the target file (.o)
-	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $< -o $@
-
-# --- Testing Targets ---
-
-# A generic 'test' target that runs the phase 1 test by default
-.PHONY: test
-test: test-phase1
-
-# Target to run Phase 1 (KNN) test cases
-# Assumes 'generate_knn_tests.py' is in the root directory
-# This target depends on the 'phase1' executable, so 'make' will build it first.
-.PHONY: test-phase1
-test-phase1: $(PHASE1_EXEC)
-	@echo "--- Generating Phase 1 KNN Test Cases ---"
-	# Assumes you have python3
-	python3 generate_knn_tests.py
-	@echo "--- Running Phase 1 Executable ---"
-	# Runs the executable with the required arguments
-	./$(PHASE1_EXEC) graph.json queries.json output.json
-	@echo "--- Phase 1 Test Run Complete ---"
-	@echo "Check 'output.json' for results."
-
-# Placeholder for Phase 2 tests
-.PHONY: test-phase2 
-test-phase2: $(PHASE2_EXEC)
-	@echo "--- Running Phase 2 ---"
-	@echo "Reminder: Create a 'generate_phase2_tests.py' script"
-	@echo "and update this target to run your Phase 2 tests."
-	# Example: ./$(PHASE2_EXEC) p2_graph.json p2_queries.json p2_output.json
-
-# Placeholder for Phase 3 tests
-.PHONY: test-phase3
-test-phase3: $(PHASE3_EXEC)
-	@echo "--- Running Phase 3 ---"
-	@echo "Reminder: Create a 'generate_phase3_tests.py' script"
-	@echo "and update this target to run your Phase 3 tests."
-	# Example: ./$(PHASE3_EXEC) p3_graph.json p3_queries.json p3_output.json
+    @echo "Compiling $<..."
+    # $< is the source file (.cpp), $@ is the target file (.o)
+    $(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $< -o $@
 
 # --- Cleanup ---
 
-# Target to clean up all build artifacts and generated files
+# Target to clean up all build artifacts
 .PHONY: clean
 clean:
-	@echo "Cleaning up build artifacts and test files..."
-	# Remove the executables
-	rm -f $(PHASE1_EXEC) $(PHASE2_EXEC) $(PHASE3_EXEC)
-	# Remove all object files from all phase directories
-	rm -f Phase-1/*.o Phase-2/*.o Phase-3/*.o
-	# Remove generated test files
-	rm -f graph.json queries.json output.json
+    @echo "Cleaning up build artifacts..."
+    # Remove the executables
+    rm -f $(PHASE1_EXEC) $(PHASE2_EXEC) $(PHASE3_EXEC)
+    # Remove all object files from all phase directories
+    rm -f Phase-1/*.o Phase-2/*.o Phase-3/*.o
