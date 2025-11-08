@@ -39,36 +39,36 @@ all: $(PHASE1_EXEC) $(PHASE2_EXEC) $(PHASE3_EXEC)
 # Rule to build the 'phase1' executable
 # It depends on all the object files from the Phase-1 directory
 $(PHASE1_EXEC): $(PHASE1_OBJS)
-    @echo "Linking $@..."
-    # The $^ variable automatically gets all dependencies (all .o files)
-    $(CXX) $(CPPFLAGS) -o $@ $^ $(LDFLAGS)
+	@echo "Linking $@..."
+	# The $^ variable automatically gets all dependencies (all .o files)
+	$(CXX) $(CPPFLAGS) -o $@ $^ $(LDFLAGS)
 
 # Rule to build the 'phase2' executable
 $(PHASE2_EXEC): $(PHASE2_OBJS)
-    @echo "Linking $@..."
-    $(CXX) $(CPPFLAGS) -o $@ $^ $(LDFLAGS)
+	@echo "Linking $@..."
+	$(CXX) $(CPPFLAGS) -o $@ $^ $(LDFLAGS)
 
 # Rule to build the 'phase3' executable
 $(PHASE3_EXEC): $(PHASE3_OBJS)
-    @echo "Linking $@..."
-    $(CXX) $(CPPFLAGS) -o $@ $^ $(LDFLAGS)
+	@echo "Linking $@..."
+	$(CXX) $(CPPFLAGS) -o $@ $^ $(LDFLAGS)
 
 # --- Pattern Rule for Compilation ---
 # This is a generic rule that tells 'make' how to build
 # any .o file from a corresponding .cpp file.
 # The .o files will be created in the same directory as their .cpp files.
 %.o: %.cpp
-    @echo "Compiling $<..."
-    # $< is the source file (.cpp), $@ is the target file (.o)
-    $(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $< -o $@
+	@echo "Compiling $<..."
+	# $< is the source file (.cpp), $@ is the target file (.o)
+	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $< -o $@
 
 # --- Cleanup ---
 
 # Target to clean up all build artifacts
 .PHONY: clean
 clean:
-    @echo "Cleaning up build artifacts..."
-    # Remove the executables
-    rm -f $(PHASE1_EXEC) $(PHASE2_EXEC) $(PHASE3_EXEC)
-    # Remove all object files from all phase directories
-    rm -f Phase-1/*.o Phase-2/*.o Phase-3/*.o
+	@echo "Cleaning up build artifacts..."
+	# Remove the executables
+	rm -f $(PHASE1_EXEC) $(PHASE2_EXEC) $(PHASE3_EXEC)
+	# Remove all object files from all phase directories
+	rm -f Phase-1/*.o Phase-2/*.o Phase-3/*.o
