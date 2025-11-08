@@ -287,7 +287,7 @@ std::vector<int> Algorithms::KNN(
     }        
     std::vector<int> knns;
     knns.reserve(distances.size());
-    while(!knns.empty()){
+    while(!distances.empty()){
         knns.push_back(distances.top().second);
         distances.pop();
     }
