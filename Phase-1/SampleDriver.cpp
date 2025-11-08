@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <chrono>
-#include "Graph.h"
+#include "Graph.hpp"
 
 using json = nlohmann::json;
 
@@ -47,7 +47,7 @@ void process_graph_file(const std::ifstream& graph_file, Graph& G)
 json process_query(const json& query) 
 {
     json result ;
-
+    Algorithms A;
     if(query["type"] == "remove_edge")
     {
         int id = query["edge_id"];
@@ -104,7 +104,7 @@ json process_query(const json& query)
                 }
             }
         }
-        auto [found, cost, path] = Shortest_paths(G, source, target, mode, cons);
+        auto [found, cost, path] = A.Shortest_paths(G, source, target, mode, cons);
         
         result["id"] = query["id"];
         result["possible"] = found;
@@ -120,7 +120,7 @@ json process_query(const json& query)
         int k = query["k"];
         std::string metric = query["metric"];
 
-        auto nodes = KNN(G, poi,lat ,lon, k, metric);
+        auto nodes = A.KNN(G, poi,lat ,lon, k, metric);
         result = {
             {"id": query["id"]},
             {"nodes": nodes}

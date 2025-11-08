@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <chrono>
-#include "Graph.h"
+#include "Graph.hpp"
 
 using json = nlohmann::json;
 
@@ -47,6 +47,7 @@ void process_graph_file(const std::ifstream& graph_file, Graph& G)
 json process_query(const json& query) 
 {
     json result ;
+    Algorithms A;
 
     if(query["type"] == "k_shortest_paths")
     {
@@ -56,7 +57,7 @@ json process_query(const json& query)
         std::string mode = query["mode"];
         results["id"] = query["id"];
         result["paths"] = json::array();
-        auto paths = k_shortest_paths(G, source, target, k, mode);
+        auto paths = A.k_shortest_paths(G, source, target, k, mode);
         for (const auto& p : paths) {
             json pathObj;
             pathObj["path"] = p.first;
@@ -73,7 +74,7 @@ json process_query(const json& query)
         int overlap_threshold = query["overlap_threshold"]; 
         results["id"] = query["id"];
         result["paths"] = json::array();
-        auto paths = k_shortest_paths(G, source, target, k, mode);
+        auto paths = A.k_shortest_paths(G, source, target, k, mode);
         for (const auto& p : paths) {
             json pathObj;
             pathObj["path"] = p.first;
@@ -90,7 +91,7 @@ json process_query(const json& query)
         for (const auto& q : queries) {
             int src = q["source"];
             int tgt = q["target"];
-            int dist = getApproxShortestDistance(src, tgt, timeBudgetMs, acceptableErrorPct);
+            double dist = A.approx_shortest_paths(src, tgt, timeBudgetMs, acceptableErrorPct);
             json distObj;
             distObj["source"] = src;
             distObj["target"] = tgt;
