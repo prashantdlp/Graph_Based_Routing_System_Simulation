@@ -101,8 +101,7 @@ double Edge_time(
         if(edge->speed_profile.empty())
             return total_time + edge->average_time;
         double speed = edge->speed_profile[slot];    
-        return total_time + edge->average_time;
-        // Time remaining in current slot
+        // Time remaining in current slot fa
         double next_slot_boundary = (slot + 1) * TIME_SLOT;
         double time_remaining_in_slot = next_slot_boundary - current_time;
         
