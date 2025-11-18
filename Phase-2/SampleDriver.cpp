@@ -3,6 +3,7 @@
 #include <fstream>
 #include <chrono>
 #include "Graph.hpp"
+#include "Algorithms.hpp"
 
 using json = nlohmann::json;
 
@@ -48,6 +49,7 @@ json process_query(const json& query)
 {
     json result ;
     Algorithms A;
+    result["id"] = query["id"];
 
     if(query["type"] == "k_shortest_paths")
     {
@@ -55,7 +57,6 @@ json process_query(const json& query)
         int target = query["target"];
         int k = query["k"];
         std::string mode = query["mode"];
-        results["id"] = query["id"];
         result["paths"] = json::array();
         auto paths = A.k_shortest_paths(G, source, target, k, mode);
         for (const auto& p : paths) {
@@ -72,9 +73,8 @@ json process_query(const json& query)
         int target = query["target"];
         int k = query["k"];
         int overlap_threshold = query["overlap_threshold"]; 
-        results["id"] = query["id"];
         result["paths"] = json::array();
-        auto paths = A.k_shortest_paths(G, source, target, k, mode);
+        auto paths = A.k_shortest_paths_heuristic(G, source, target, k, overlap_threshold);
         for (const auto& p : paths) {
             json pathObj;
             pathObj["path"] = p.first;
@@ -86,15 +86,14 @@ json process_query(const json& query)
         auto queries = query["queries"];
         int time_bugdet_ms = query["time_budget_ms"] ;
         float acceptable_error_pct = query["acceptable_error_pct"];  
-        result["id"] = id;
         result["distances"] = json::array();
         for (const auto& q : queries) {
-            int src = q["source"];
-            int tgt = q["target"];
-            double dist = A.approx_shortest_paths(src, tgt, timeBudgetMs, acceptableErrorPct);
+            int source = q["source"];
+            int target = q["target"];
+            double dist = A.approx_shortest_paths(G, source, target, time_budget_ms, acceptable_error_pct);
             json distObj;
-            distObj["source"] = src;
-            distObj["target"] = tgt;
+            distObj["source"] = source;
+            distObj["target"] = target;
             distObj["approx_shortest_distance"] = dist;
             result["distances"].push_back(distObj);
         }
@@ -143,9 +142,15 @@ int main(int argc, char* argv[])
 
     for (const auto& query : queries_json["events"]) {
         auto start_time = std::chrono::high_resolution_clock::now();
-
-        json result = process_query(query);
-
+        try {
+            result = process_query(query);
+        } 
+        catch (const std::exception &e) {
+            result["error"] = std::string("exception: ") + e.what();
+        }
+        catch (...) {
+            result["error"] = "unknown exception";
+        }
         auto end_time = std::chrono::high_resolution_clock::now();
         result["processing_time"] = std::chrono::duration<double, std::milli>(end_time - start_time).count();
         results.push_back(result);

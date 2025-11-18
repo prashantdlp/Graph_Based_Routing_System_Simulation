@@ -63,7 +63,7 @@ public:
     const Edge* getEdge(int u, int v) const;
 
     bool removeEdge(int edge_id);
-    void modifyEdge(int edge_id, const Edge& patch);
+    bool modifyEdge(int edge_id, const Edge& patch);
     // void restoreEdge(int edge_id, const Edge& patch);
     const std::vector<Edge*>& getAdjacentEdges(int node_id) const;
     const std::vector<Edge*>& getIncomingEdges(int node_id) const;

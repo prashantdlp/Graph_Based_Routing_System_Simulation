@@ -65,9 +65,9 @@ bool Graph::removeEdge(int edge_id) {
     return true;
 }
 
-void Graph::modifyEdge(int edge_id, const Edge& patch) {
+bool Graph::modifyEdge(int edge_id, const Edge& patch) {
     auto it = edges.find(edge_id);
-    if (it == edges.end()) return;
+    if (it == edges.end()) return false;
 
     Edge* e = it->second;
     if(!e->active)
@@ -77,6 +77,8 @@ void Graph::modifyEdge(int edge_id, const Edge& patch) {
     if (!patch.speed_profile.empty()) e->speed_profile = patch.speed_profile;
     if (!patch.road_type.empty()) e->road_type = patch.road_type;
     if (patch.oneway.has_value()) e->oneway = patch.oneway.value();
+   
+    return true;
 }
 
 const std::vector<Edge*>& Graph::getAdjacentEdges(int node_id) const {

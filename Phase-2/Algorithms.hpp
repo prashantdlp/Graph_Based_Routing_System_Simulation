@@ -30,6 +30,22 @@ public:
         const std::string& mode
     );
 
+    static double approx_shortest_paths(
+        const Graph& graph,
+        int source,
+        int target,
+        int time_budget_ms,
+        float acceptable_error_pct
+    );
+
+    static std::vector<std::pair<std::vector<int>, int>> k_shortest_paths_heuristic(
+        const Graph& graph,
+        int source,
+        int target,
+        int k,
+        int overlap_threshold
+    );
+
 };
 
 #endif
