@@ -239,18 +239,21 @@ int getNearestNodeId (const Graph& graph, double latitude, double longitude){
             return i;
         }
     }
-    int nearestId =1;
-    double nearestDistance = euclidian_distance(graph.getNode(nearestId)->lat, graph.getNode(nearestId)->lon, latitude, longitude);
+    int nearestId =0;
+    double minDistance = std::numeric_limits<double>::max();
+    const Node* node0 = graph.getNode(0);
+    minDistance = euclidian_distance(node0->lat, node0->lon, latitude, longitude);
+
+    // double nearestDistance = euclidian_distance(graph.getNode(nearestId)->lat, graph.getNode(nearestId)->lon, latitude, longitude);
     for(int i=1; i<graph.size(); i++){
         const Node* node = graph.getNode(i);
-
-        if(nearestDistance> euclidian_distance(node->lat, node->lon, latitude, longitude)){
-            nearestDistance = euclidian_distance(node->lat, node->lon, latitude, longitude);
-
+        double distance = euclidian_distance(node->lat, node->lon, latitude, longitude)
+        if(distance < minDistance){
+            minDistance = distance;
             nearestId = i;
         }
-    return i;
-    }
+    }    
+    return nearestId;
 }
 
 std::vector<int> Algorithms::KNN(
