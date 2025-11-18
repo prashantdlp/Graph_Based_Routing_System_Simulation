@@ -276,7 +276,7 @@ std::vector<int> Algorithms::KNN(
         const Node* origin = graph.getNode(nodeID);
         constraints noconstr;
         distance = std::get<double>(Shortest_paths(graph, origin->id, node->id,"distance", noconstr));
-        if(id == nodeID){continue;}    
+        // if(id == nodeID){continue;}    
     }
         
         if((int)distances.size() < k){
