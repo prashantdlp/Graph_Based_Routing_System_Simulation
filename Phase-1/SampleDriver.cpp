@@ -88,9 +88,9 @@ json process_query(const json& query, std::ifstream& graph_file,Graph& G)
         }
         if(!hasPatch){
             result["done"] = false;
-            return ;
+        }else{
+            result["done"] = G.modifyEdge(id, patch); 
         }
-        result["done"] = G.modifyEdge(id, patch); 
     }
     else if(query["type"] == "shortest_path")
     {
