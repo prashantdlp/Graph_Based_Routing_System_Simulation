@@ -255,6 +255,37 @@ int getNearestNodeId (const Graph& graph, double latitude, double longitude){
     }    
     return nearestId;
 }
+std::vector<double> Dijkstra_OneToAll(const Graph& graph, int source) {
+    int n = graph.size();
+    std::vector<double> dist(n, std::numeric_limits<double>::infinity());
+    
+    // Min-priority queue: stores {distance, u}
+    using PII = std::pair<double, int>;
+    std::priority_queue<PII, std::vector<PII>, std::greater<PII>> pq;
+
+    if (source >= 0 && source < n) {
+        dist[source] = 0.0;
+        pq.push({0.0, source});
+    }
+
+    while (!pq.empty()) {
+        auto [d, u] = pq.top();
+        pq.pop();
+
+        if (d > dist[u]) continue;
+
+        for (auto edge : graph.getAdjacentEdges(u)) {
+            // Only consider active edges. KNN metric usually implies pure distance.
+                int v = edge->v;
+                double weight = edge->length; 
+                if (dist[u] + weight < dist[v]) {
+                    dist[v] = dist[u] + weight;
+                    pq.push({dist[v], v});
+                }
+        }
+    }
+    return dist;
+}
 
 std::vector<int> Algorithms::KNN(
     const Graph& graph,
@@ -265,37 +296,33 @@ std::vector<int> Algorithms::KNN(
     const std::string& metric
     ){
         //based on euclidian
+    std::vector<int> poi_nodes = graph.getNodesWithPOI(poi);
+    std::vector<std::pair<double, int>> candidates;
     std::priority_queue<std::pair<double, int>> distances;
-    for(auto id : graph.getNodesWithPOI(poi)){
-        const Node* node = graph.getNode(id);
-        double distance =0;
-        if(metric == "euclidean"){
-         distance = euclidian_distance(latitude, longitude, node->lat, node->lon);   }
-        else if (metric == "shortest_path"){
-        int nodeID = getNearestNodeId(graph, latitude, longitude);
-        const Node* origin = graph.getNode(nodeID);
-        constraints noconstr;
-        distance = std::get<double>(Shortest_paths(graph, origin->id, node->id,"distance", noconstr));
-        // if(id == nodeID){continue;}    
-    }
-        
-        if((int)distances.size() < k){
-            distances.push({distance, id});
+
+    if(metric == "euclidean"){
+            for(int id : poi_nodes){
+                const Node* node = graph.getNode(id);
+                if (!node) continue;
+                double dist = euclidian_distance(latitude, longitude, node->lat, node->lon);
+                candidates.push_back({dist, id});
+            }
         }
-        else if(distance <distances.top().first ){
-            distances.pop();
-            distances.push({distance, id});
+    else if (metric == "shortest_path"){
+        int originID = getNearestNodeId(graph, latitude, longitude);
+        std::vector<double> network_dist = Dijkstra_OneToAll(graph, originID);
+        for(int id : poi_nodes){
+            double d = network_dist[id];
+            if (d!= std::numeric_limits<double>::infinity()){
+                candidates.push_back({d, id});
+            }
         }
-    }        
+    }    
+    std::sort(candidates.begin(), candidates.end());   
     std::vector<int> knns;
-    knns.reserve(distances.size());
-    while(!distances.empty()){
-        knns.push_back(distances.top().second);
-        distances.pop();
-    }
-    std::reverse(knns.begin(), knns.end());
-    
-        //based on path
+    for (size_t i = 0; i < candidates.size() && i < (size_t)k; ++i) {
+        knns.push_back(candidates[i].second);
+    }    
     return knns;
     }
 
