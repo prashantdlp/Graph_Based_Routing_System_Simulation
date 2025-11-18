@@ -50,7 +50,7 @@ json process_query(const json& query, std::ifstream& graph_file,Graph& G)
 {
     json result ;
     Algorithms A;
-
+    result["id"] = query["id"];
     if(query["type"] == "remove_edge")
     {
         int id = query["edge_id"];
@@ -80,7 +80,7 @@ json process_query(const json& query, std::ifstream& graph_file,Graph& G)
         {
             patch.road_type = query["patch"]["road_type"];
         }
-        result["id"]   = query["id"];
+        
         result["done"] = G.modifyEdge(id, patch); 
     }
     else if(query["type"] == "shortest_path")
@@ -88,6 +88,7 @@ json process_query(const json& query, std::ifstream& graph_file,Graph& G)
         int source = query["source"];
         int target = query["target"];
         std::string mode = query["mode"];
+        mode = "minimum_" + mode; 
 
         constraints cons;
         if (query.contains("constraints")) 
@@ -110,9 +111,8 @@ json process_query(const json& query, std::ifstream& graph_file,Graph& G)
         }
         auto [found, cost, path] = A.Shortest_paths(G, source, target, mode, cons);
         
-        result["id"] = query["id"];
         result["possible"] = found;
-        result["mode"] = cost;
+        result[mode] = cost;
         result["path"] = path;
 
     }
@@ -125,7 +125,6 @@ json process_query(const json& query, std::ifstream& graph_file,Graph& G)
         std::string metric = query["metric"];
 
         std::vector<int> nodes = A.KNN(G, lat ,lon,poi, k, metric);
-        result["id"] = query["id"];
         result["nodes"] = json::array();
         for(int i=0; i<nodes.size(); i++){
             result["nodes"].push_back(nodes[i]);
