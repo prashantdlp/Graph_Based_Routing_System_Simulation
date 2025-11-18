@@ -142,8 +142,9 @@ int main(int argc, char* argv[])
 
     for (const auto& query : queries_json["events"]) {
         auto start_time = std::chrono::high_resolution_clock::now();
+        json result;
         try {
-            result = process_query(query);
+            json result = process_query(query,graph_file, G);
         } 
         catch (const std::exception &e) {
             result["error"] = std::string("exception: ") + e.what();

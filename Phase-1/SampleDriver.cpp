@@ -60,36 +60,35 @@ json process_query(const json& query, std::ifstream& graph_file,Graph& G)
     {
         int id = query["edge_id"];
         Edge patch;
-        bool hasPatch = false;
-
+        bool hasPatch = false ;
         if (query["patch"].contains("length")) 
         {
             patch.length = query["patch"]["length"];
-            hasPatch = true;
+            hasPatch = true ;
         }
         if (query["patch"].contains("average_time")) 
         {
             patch.average_time = query["patch"]["average_time"];
-            hasPatch = true;
+            hasPatch = true ;
         }
         if (query["patch"].contains("speed_profile")) 
         {
             patch.speed_profile = query["patch"]["speed_profile"].get<std::vector<double>>();
-            hasPatch = true;
+            hasPatch = true ;
         }
         if (query["patch"].contains("oneway")) 
         {
             patch.oneway = query["patch"]["oneway"];
-            hasPatch = true;
+            hasPatch = true ;
         }
         if (query["patch"].contains("road_type")) 
         {
             patch.road_type = query["patch"]["road_type"];
-            hasPatch = true;
+            hasPatch = true ;
         }
-        if (!hasPatch) {
+        if(!hasPatch){
             result["done"] = false;
-            return;
+            return ;
         }
         result["done"] = G.modifyEdge(id, patch); 
     }
@@ -180,8 +179,9 @@ int main(int argc, char* argv[])
 
     for (const auto& query : queries_json["events"]) {
         auto start_time = std::chrono::high_resolution_clock::now();
+        json result;
         try {
-            result = process_query(query);
+            json result = process_query(query,graph_file, G);
         } 
         catch (const std::exception &e) {
             result["error"] = std::string("exception: ") + e.what();
