@@ -97,3 +97,4 @@ std::vector<int> Graph::getNodesWithPOI(const std::string& poi) const {
     if (it == poi_index.end()) return std::vector<int>{};
     return it->second;
 }
+//get edge weight 

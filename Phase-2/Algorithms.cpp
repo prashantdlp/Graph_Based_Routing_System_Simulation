@@ -48,7 +48,7 @@ static std::vector<int> compute_heuristic(const Graph &graph, int target)
     return h;
 }
 
-static std::vector<std::pair<std::vector<int>, int>> k_shortest_paths( // TODO:                                                                                                                           DO: preprocesng??
+std::vector<std::pair<std::vector<int>, int>> Algorithms::k_shortest_paths( // TODO:                                                                                                                           DO: preprocesng??
     const Graph &graph,
     int source,
     int target,
@@ -115,7 +115,7 @@ static std::vector<std::pair<std::vector<int>, int>> k_shortest_paths( // TODO: 
     return result;
 }
 
-static double approx_shortest_paths( // TODO: implement
+double Algorithms::approx_shortest_paths( // TODO: implement
     const Graph &graph,
     int source,
     int target,
@@ -204,7 +204,7 @@ static double approx_shortest_paths( // TODO: implement
             for (const Edge *e : graph.getAdjacentEdges(u))
             {
                 int v = e->v;
-                double w = graph.getEdgeWeight(e->id, "minimum_distance");
+                double w = e->length;
 
                 if (distF[u] + w < distF[v])
                 {
@@ -232,7 +232,7 @@ static double approx_shortest_paths( // TODO: implement
             for (const Edge *e : graph.getIncomingEdges(u))
             { // IMPORTANT
                 int v = e->u;
-                double w = graph.getEdgeWeight(e->id, "minimum_distance");
+                double w = e->length;
 
                 if (distB[u] + w < distB[v])
                 {
@@ -256,7 +256,7 @@ static double approx_shortest_paths( // TODO: implement
     return -1.0; // unreachable
 }
 
-static std::vector<std::pair<std::vector<int>, int>> k_shortest_paths_heuristic(
+std::vector<std::pair<std::vector<int>, int>> Algorithms::k_shortest_paths_heuristic(
     const Graph &graph,
     int source,
     int target,

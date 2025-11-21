@@ -7,7 +7,7 @@
 
 using json = nlohmann::json;
 
-void process_graph_file(const std::ifstream& graph_file, Graph& G) 
+void process_graph_file(std::ifstream& graph_file, Graph& G) 
 {
     json graph_json;
     graph_file >> graph_json;
@@ -15,7 +15,7 @@ void process_graph_file(const std::ifstream& graph_file, Graph& G)
     
     // Number of nodes (optional, but we can resize in advance)
     int num_nodes = graph_json["meta"]["nodes"];
-    G = Graph(num_nodes);
+    G = Graph();
 
     // --- Parse nodes ---
     for (auto& node_json : graph_json["nodes"]) 
@@ -30,6 +30,7 @@ void process_graph_file(const std::ifstream& graph_file, Graph& G)
     // --- Parse edges ---
     for (auto& edge_json : graph_json["edges"]) 
     {
+        int id = edge_json["id"];
         int u = edge_json["u"];
         int v = edge_json["v"];
         double length = edge_json["length"];
@@ -41,11 +42,11 @@ void process_graph_file(const std::ifstream& graph_file, Graph& G)
         }
         bool oneway = edge_json["oneway"];
         std::string road_type = edge_json["road_type"];
-        G.addEdge(u, v, length, avg_time, speed_profile, oneway, road_type);
+        G.addEdge(id, u, v, length, avg_time, speed_profile, oneway, road_type);
     }
 }
 
-json process_query(const json& query) 
+json process_query(const json &query, std::ifstream &graph_file, Graph &G) 
 {
     json result ;
     Algorithms A;
@@ -84,7 +85,7 @@ json process_query(const json& query)
     }else if(query["type"] == "approx_shortest_path")
     {
         auto queries = query["queries"];
-        int time_bugdet_ms = query["time_budget_ms"] ;
+        int time_budget_ms = query["time_budget_ms"] ;
         float acceptable_error_pct = query["acceptable_error_pct"];  
         result["distances"] = json::array();
         for (const auto& q : queries) {
@@ -112,8 +113,8 @@ int main(int argc, char* argv[])
     std::ifstream graph_file(argv[1]);
     if (!graph_file.is_open()) 
     {
-        std::cerr << "Failed to open " << filename << std::endl;
-        return;
+        std::cerr << "Failed to open " << argv[1] << std::endl;
+        return 1;
     }
 
     Graph G ;
@@ -144,7 +145,7 @@ int main(int argc, char* argv[])
         auto start_time = std::chrono::high_resolution_clock::now();
         json result;
         try {
-            json result = process_query(query,graph_file, G);
+            result = process_query(query,graph_file, G);
         } 
         catch (const std::exception &e) {
             result["error"] = std::string("exception: ") + e.what();
@@ -155,12 +156,6 @@ int main(int argc, char* argv[])
         auto end_time = std::chrono::high_resolution_clock::now();
         result["processing_time"] = std::chrono::duration<double, std::milli>(end_time - start_time).count();
         results.push_back(result);
-    }
-
-    std::ofstream output_file(argv[3]);
-    if (!output_file.is_open()) {
-        std::cerr << "Failed to open output.json for writing" << std::endl;
-        return 1;
     }
 
     json output;
