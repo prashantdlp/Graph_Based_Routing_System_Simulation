@@ -23,7 +23,14 @@ void process_graph_file(std::ifstream& graph_file, Graph& G)
         int id     = node_json["id"];
         double lat = node_json["lat"];
         double lon = node_json["lon"];
-        std::vector<std::string> pois = node_json["pois"].get<std::vector<std::string>>();
+        std::vector<std::string> pois;
+        if (node_json.contains("pois") && node_json["pois"].is_array()) {
+            for (const auto &p : node_json["pois"]) {
+                if (p.is_string()) {
+                    pois.push_back(p.get<std::string>());
+                }
+            }
+        }
         G.addNode(id, lat, lon, pois);
     }
 

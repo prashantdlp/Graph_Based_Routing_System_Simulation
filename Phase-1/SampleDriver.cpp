@@ -23,7 +23,14 @@ void process_graph_file(std::ifstream &graph_file, Graph &G)
         int id = node_json["id"];
         double lat = node_json["lat"];
         double lon = node_json["lon"];
-        std::vector<std::string> pois = node_json["pois"].get<std::vector<std::string>>();
+        std::vector<std::string> pois;
+        if (node_json.contains("pois") && node_json["pois"].is_array()) {
+            for (const auto &p : node_json["pois"]) {
+                if (p.is_string()) {
+                    pois.push_back(p.get<std::string>());
+                }
+            }
+        }
         G.addNode(id, lat, lon, pois);
     }
 
@@ -35,9 +42,8 @@ void process_graph_file(std::ifstream &graph_file, Graph &G)
         int v = edge_json["v"];
         double length = edge_json["length"];
         double avg_time = edge_json["average_time"];
-        std::vector<double> speed_profile;
-        if (edge_json.contains("speed_profile") && edge_json["speed_profile"].is_array())
-        {
+        std::vector<double>speed_profile;
+        if (edge_json.contains("speed_profile") && edge_json["speed_profile"].is_array()){
             speed_profile = edge_json["speed_profile"].get<std::vector<double>>();
         }
         bool oneway = false; 
