@@ -9,6 +9,10 @@ import heapq
 
 class Phase2Validator:
     def __init__(self, graph_file, queries_file, output_file):
+        self.graph_file = graph_file
+        self.queries_file = queries_file
+        self.output_file = output_file
+        
         with open(graph_file, 'r') as f:
             self.graph_data = json.load(f)
         with open(queries_file, 'r') as f:
