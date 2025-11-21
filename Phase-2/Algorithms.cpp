@@ -72,10 +72,13 @@ std::vector<std::pair<std::vector<int>, double>> Algorithms::k_shortest_paths(
 
     while (!pq.empty() && result.size() < k)
     {
-        auto [h_prediction, data] = pq.top();
-        auto [length, path_vector] = data;
-        int curr = path_vector.back();
+        auto top_element = pq.top();
         pq.pop();
+
+        double h_prediction = top_element.first;
+        double length = top_element.second.first;
+        const auto &path_vector = top_element.second.second;
+        int curr = path_vector.back();
 
         if (result.size() == k && h_prediction > worst_path_cost)
         {
@@ -163,7 +166,6 @@ double Algorithms::approx_shortest_paths( // TODO: implement
     {
         return geo_dist_m(graph.getNode(u), graph.getNode(source));
     };
-
 
     // Priority queues
     struct State
@@ -255,7 +257,6 @@ double Algorithms::approx_shortest_paths( // TODO: implement
 
         if (best_meeting < INF && best_meeting <= min(fFmin, fBmin))
             return best_meeting;
-
     }
 
     if (best_meeting < INF)
