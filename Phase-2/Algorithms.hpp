@@ -7,6 +7,7 @@
 #include <string>
 #include <utility>
 #include  <unordered_map>
+#define METERS_PER_DEG 111320.0 
 
 struct constraints {
     std::vector<int> forbidden_nodes;

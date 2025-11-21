@@ -143,27 +143,27 @@ double Algorithms::approx_shortest_paths( // TODO: implement
     vector<bool> visitedF(N, false), visitedB(N, false);
 
     // --- Heuristics ---
+    // Convert degree delta to meters
+    auto geo_dist_m = [&](const Node *a, const Node *b)
+    {
+        if (!a || !b)
+            return 0.0;
+        double dx = (a->lat - b->lat) * METERS_PER_DEG;
+        double dy = (a->lon - b->lon) * METERS_PER_DEG;
+        return sqrt(dx * dx + dy * dy);
+    };
+
+    // Heuristics (admissible, consistent)
     auto hF = [&](int u)
     {
-        const Node *nu = graph.getNode(u);
-        const Node *nt = graph.getNode(target);
-        if (!nu || !nt)
-            return 0.0;
-        double dx = nu->lat - nt->lat;
-        double dy = nu->lon - nt->lon;
-        return sqrt(dx * dx + dy * dy);
+        return geo_dist_m(graph.getNode(u), graph.getNode(target));
     };
 
     auto hB = [&](int u)
     {
-        const Node *nu = graph.getNode(u);
-        const Node *ns = graph.getNode(source);
-        if (!nu || !ns)
-            return 0.0;
-        double dx = nu->lat - ns->lat;
-        double dy = nu->lon - ns->lon;
-        return sqrt(dx * dx + dy * dy);
+        return geo_dist_m(graph.getNode(u), graph.getNode(source));
     };
+
 
     // Priority queues
     struct State
@@ -249,14 +249,26 @@ double Algorithms::approx_shortest_paths( // TODO: implement
             }
         }
 
-        // Early exact stop if meeting is optimal
-        if (best_meeting < INF)
-            return best_meeting; // exact shortest path found
+        // Correct early stop
+        double fFmin = pqF.empty() ? INF : pqF.top().f;
+        double fBmin = pqB.empty() ? INF : pqB.top().f;
+
+        if (best_meeting < INF && best_meeting <= min(fFmin, fBmin))
+            return best_meeting;
+
     }
 
-    // Approx if time expired or PQ empties
     if (best_meeting < INF)
-        return best_meeting * (1.0 + acceptable_error_pct);
+    {
+        double fFmin = pqF.empty() ? INF : pqF.top().f;
+        double fBmin = pqB.empty() ? INF : pqB.top().f;
+
+        // Best provable lower bound
+        double lower_bound = min(best_meeting, min(fFmin, fBmin));
+
+        // Approximation guarantee
+        return lower_bound * (1.0 + acceptable_error_pct);
+    }
 
     return -1.0; // unreachable
 }
