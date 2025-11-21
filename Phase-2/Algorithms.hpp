@@ -16,26 +16,10 @@ struct constraints {
 
 class Algorithms {
 public:
-    // --- Phase 1 ---
-    static std::tuple<bool, double, std::vector<int>> Shortest_paths(
-         const Graph& graph,
-         int source,
-         int target,
-         const std::string& mode,
-         const constraints& constraints
-    );
 
-    static std::vector<int> KNN(
-        const Graph& graph,
-        double latitude,
-        double longitude,
-        const std::string& poi,
-        int k,
-        const std::string& metric
-    );
 
     // --- Phase 2 ---
-    static std::vector<std::pair<std::vector<int>, int>> k_shortest_paths(
+    static std::vector<std::pair<std::vector<int>, double>> k_shortest_paths(
         const Graph& graph,
         int source,
         int target,

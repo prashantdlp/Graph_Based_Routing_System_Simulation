@@ -47,7 +47,7 @@ static std::vector<double> compute_heuristic(const Graph &graph, int target)
     return h;
 }
 
-static std::vector<std::pair<std::vector<int>, double>> k_shortest_paths(
+std::vector<std::pair<std::vector<int>, double>> Algorithms::k_shortest_paths(
     const Graph &graph,
     int source,
     int target,
