@@ -9,19 +9,19 @@
 #include <set>
 #include <chrono>
 
-static std::vector<int> compute_heuristic(const Graph &graph, int target)
+static std::vector<double> compute_heuristic(const Graph &graph, int target)
 {
     int n = graph.size();
-    std::vector<int> h(n, std::numeric_limits<int>::max());
+    std::vector<double> h(n, std::numeric_limits<double>::max());
 
     std::priority_queue<
-        std::pair<int, int>,
-        std::vector<std::pair<int, int>>,
+        std::pair<double, int>,
+        std::vector<std::pair<double, int>>,
         std::greater<>>
         pq;
 
-    h[target] = 0;
-    pq.push({0, target});
+    h[target] = 0.0;
+    pq.push({0.0, target});
 
     while (!pq.empty())
     {
@@ -31,11 +31,10 @@ static std::vector<int> compute_heuristic(const Graph &graph, int target)
         if (dist > h[u])
             continue;
 
-        // Traverse INCOMING edges (reverse direction)
         for (const auto *edge : graph.getIncomingEdges(u))
         {
-            int source = graph.getNode(edge->u)->id; // Source of the incoming edge
-            int new_dist = dist + edge->length;
+            int source = graph.getNode(edge->u)->id;
+            double new_dist = dist + edge->length;
 
             if (new_dist < h[source])
             {
@@ -48,66 +47,72 @@ static std::vector<int> compute_heuristic(const Graph &graph, int target)
     return h;
 }
 
-std::vector<std::pair<std::vector<int>, int>> Algorithms::k_shortest_paths( // TODO:                                                                                                                           DO: preprocesng??
+static std::vector<std::pair<std::vector<int>, double>> k_shortest_paths(
     const Graph &graph,
     int source,
     int target,
     int k,
     const std::string &mode)
 {
-    std::vector<std::pair<std::vector<int>, int>> result;
+    std::vector<std::pair<std::vector<int>, double>> result;
     result.reserve(k);
     int n = graph.size();
-    std::vector<int> h = compute_heuristic(graph, target);
+    std::vector<double> h = compute_heuristic(graph, target);
+
     std::priority_queue<
-        std::pair<int, std::pair<int, std::vector<int>>>,
-        std::vector<std::pair<int, std::pair<int, std::vector<int>>>>,
+        std::pair<double, std::pair<double, std::vector<int>>>, // FIX #2: int → double
+        std::vector<std::pair<double, std::pair<double, std::vector<int>>>>,
         std::greater<>>
         pq;
-    std::set<std::vector<int>> visited;
-    pq.push(std::make_pair(h[source], std::make_pair(0, std::vector<int>{source})));
 
-    int worst_path_cost = std::numeric_limits<int>::max();
+    std::set<std::vector<int>> completed_paths;
+    pq.push({h[source], {0.0, std::vector<int>{source}}}); // FIX #2: 0 → 0.0
+
+    double worst_path_cost = std::numeric_limits<double>::max(); // FIX #1: int::max → double::max
+
     while (!pq.empty() && result.size() < k)
     {
         auto [h_prediction, data] = pq.top();
         auto [length, path_vector] = data;
         int curr = path_vector.back();
         pq.pop();
+
         if (result.size() == k && h_prediction > worst_path_cost)
         {
             break;
         }
 
-        // Found a path to target
         if (curr == target)
-        {                                            // TODO: path_)vector <int> vector??
-            result.push_back({path_vector, length}); //
-            worst_path_cost = std::min(worst_path_cost, length);
+        {
+            if (completed_paths.count(path_vector) == 0)
+            {
+                result.push_back({path_vector, length});
+                completed_paths.insert(path_vector);
+                worst_path_cost = std::min(worst_path_cost, length); // FIX #3: ADD THIS
+            }
             continue;
         }
 
-        // Skip if we've seen this exact path prefix
-        if (visited.count(path_vector))
-            continue;
-        visited.insert(path_vector);
-
-        if (h[curr] == std::numeric_limits<int>::max())
+        if (h[curr] == std::numeric_limits<double>::max())
             continue;
 
-        // Explore neighbors
-        // for (auto& [next, weight] : graph.get_neighbors(last)) {
+        std::unordered_set<int> in_path(path_vector.begin(), path_vector.end());
+
         for (auto edge : graph.getAdjacentEdges(curr))
         {
             int next = graph.getNode(edge->v)->id;
-            if (std::find(path_vector.begin(), path_vector.end(), next) != path_vector.end())
+
+            if (in_path.count(next))
                 continue;
-            if (h[next] == std::numeric_limits<int>::max())
+
+            if (h[next] == std::numeric_limits<double>::max())
                 continue;
+
             std::vector<int> new_path_vector = path_vector;
             new_path_vector.push_back(next);
-            int new_length = length + edge->length;
-            int new_h_prediction = new_length + h[next];
+            double new_length = length + edge->length;
+            double new_h_prediction = new_length + h[next];
+
             pq.push({new_h_prediction, {new_length, new_path_vector}});
         }
     }
