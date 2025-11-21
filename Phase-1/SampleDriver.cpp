@@ -74,28 +74,37 @@ json process_query(const json &query, std::ifstream &graph_file, Graph &G)
     {
         int id = query["edge_id"];
         Edge patch;
-        if (query["patch"].contains("length"))
+        bool hasPatch = false ;
+        if (query["patch"].contains("length")) 
         {
             patch.length = query["patch"]["length"];
+            hasPatch = true ;
         }
-        if (query["patch"].contains("average_time"))
+        if (query["patch"].contains("average_time")) 
         {
             patch.average_time = query["patch"]["average_time"];
+            hasPatch = true ;
         }
-        if (query["patch"].contains("speed_profile"))
+        if (query["patch"].contains("speed_profile")) 
         {
             patch.speed_profile = query["patch"]["speed_profile"].get<std::vector<double>>();
+            hasPatch = true ;
         }
-        if (query["patch"].contains("oneway"))
+        if (query["patch"].contains("oneway")) 
         {
             patch.oneway = query["patch"]["oneway"];
+            hasPatch = true ;
         }
-        if (query["patch"].contains("road_type"))
+        if (query["patch"].contains("road_type")) 
         {
             patch.road_type = query["patch"]["road_type"];
+            hasPatch = true ;
         }
-
-        result["done"] = G.modifyEdge(id, patch);
+        if(!hasPatch){
+            result["done"] = false;
+        }else{
+            result["done"] = G.modifyEdge(id, patch); 
+        }
     }
     else if (query["type"] == "shortest_path")
     {
@@ -183,9 +192,16 @@ int main(int argc, char *argv[])
     for (const auto &query : queries_json["events"])
     {
         auto start_time = std::chrono::high_resolution_clock::now();
-
-        json result = process_query(query, graph_file, G);
-
+        json result;
+        try {
+            result = process_query(query,graph_file, G);
+        } 
+        catch (const std::exception &e) {
+            result["error"] = std::string("exception: ") + e.what();
+        }
+        catch (...) {
+            result["error"] = "unknown exception";
+        }        
         auto end_time = std::chrono::high_resolution_clock::now();
         result["processing_time"] = std::chrono::duration<double, std::milli>(end_time - start_time).count();
         results.push_back(result);
