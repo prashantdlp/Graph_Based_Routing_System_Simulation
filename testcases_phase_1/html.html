@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Network Visualizer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e27;
+            color: #fff;
+            overflow: hidden;
+        }
+        
+        #container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        
+        #canvas {
+            width: 100%;
+            height: 100%;
+            cursor: grab;
+        }
+        
+        #canvas:active {
+            cursor: grabbing;
+        }
+        
+        #controls {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(15, 23, 42, 0.95);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            max-width: 320px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+        }
+        
+        #controls h2 {
+            margin-bottom: 15px;
+            color: #60a5fa;
+            font-size: 18px;
+        }
+        
+        #fileInput {
+            display: none;
+        }
+        
+        #loadButton {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+        
+        #loadButton:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+        }
+        
+        .control-group {
+            margin-bottom: 15px;
+        }
+        
+        .control-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #cbd5e1;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .control-group label:hover {
+            color: #fff;
+        }
+        
+        .control-group input[type="checkbox"] {
+            margin-right: 8px;
+            cursor: pointer;
+        }
+        
+        .control-group button {
+            width: 100%;
+            padding: 8px;
+            background: #3b82f6;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        
+        .control-group button:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+        
+        .slider-group {
+            margin-bottom: 15px;
+        }
+        
+        .slider-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+        
+        .slider-group input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #1e293b;
+            outline: none;
+            cursor: pointer;
+        }
+        
+        .slider-group input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #60a5fa;
+            cursor: pointer;
+        }
+        
+        .slider-value {
+            display: inline-block;
+            margin-left: 8px;
+            color: #60a5fa;
+            font-weight: 600;
+        }
+        
+        #stats {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(15, 23, 42, 0.95);
+            padding: 15px 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            font-size: 13px;
+            border: 1px solid rgba(96, 165, 250, 0.2);
+        }
+        
+        #stats div {
+            margin: 5px 0;
+            color: #cbd5e1;
+        }
+        
+        #stats span {
+            color: #60a5fa;
+            font-weight: bold;
+        }
+        
+        #legend {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(15, 23, 42, 0.95);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 12px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .legend-line {
+            width: 30px;
+            height: 3px;
+            margin-right: 10px;
+        }
+
+        #tooltip {
+            position: absolute;
+            background: rgba(15, 23, 42, 0.98);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            pointer-events: none;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            max-width: 250px;
+        }
+
+        #tooltip .poi-list {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #tooltip .poi-item {
+            color: #fbbf24;
+            margin: 4px 0;
+        }
+
+        #tooltip .edge-info {
+            color: #94a3b8;
+            margin: 4px 0;
+        }
+
+        #tooltip .edge-info span {
+            color: #60a5fa;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <canvas id="canvas"></canvas>
+        
+        <div id="controls">
+            <h2>📊 Controls</h2>
+            
+            <input type="file" id="fileInput" accept=".json">
+            <button id="loadButton">📁 Load Graph JSON</button>
+            
+            <div class="control-group">
+                <label>
+                    <input type="checkbox" id="showNodes" checked> Show Nodes
+                </label>
+                <label>
+                    <input type="checkbox" id="showEdges" checked> Show Edges
+                </label>
+                <label>
+                    <input type="checkbox" id="showPOIs" checked> Show POIs
+                </label>
+                <label>
+                    <input type="checkbox" id="showLabels" checked> Show Node IDs
+                </label>
+                <label>
+                    <input type="checkbox" id="showEdgeLabels"> Show Edge Info
+                </label>
+            </div>
+
+            <div class="slider-group">
+                <label>
+                    Node Size <span class="slider-value" id="nodeSizeValue">6</span>
+                </label>
+                <input type="range" id="nodeSize" min="2" max="15" value="6">
+            </div>
+
+            <div class="slider-group">
+                <label>
+                    Edge Width <span class="slider-value" id="edgeWidthValue">2</span>
+                </label>
+                <input type="range" id="edgeWidth" min="1" max="5" value="2">
+            </div>
+
+            <div class="slider-group">
+                <label>
+                    Label Size <span class="slider-value" id="labelSizeValue">12</span>
+                </label>
+                <input type="range" id="labelSize" min="8" max="20" value="12">
+            </div>
+            
+            <div class="control-group">
+                <button id="resetView">🔄 Reset View</button>
+            </div>
+        </div>
+        
+        <div id="stats">
+            <div>Nodes: <span id="nodeCount">0</span></div>
+            <div>Edges: <span id="edgeCount">0</span></div>
+            <div>Zoom: <span id="zoomLevel">100%</span></div>
+        </div>
+        
+        <div id="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: #60a5fa;"></div>
+                <span>Node</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #f59e0b;"></div>
+                <span>Node with POIs</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-line" style="background: rgba(100,150,255,0.4);"></div>
+                <span>Road</span>
+            </div>
+        </div>
+
+        <div id="tooltip"></div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const tooltip = document.getElementById('tooltip');
+        
+        let graphData = null;
+        let transform = { x: 0, y: 0, scale: 1 };
+        let isDragging = false;
+        let lastMouse = { x: 0, y: 0 };
+        let nodeSize = 6;
+        let edgeWidth = 2;
+        let labelSize = 12;
+        let hoveredNode = null;
+        let hoveredEdge = null;
+        
+        // Embed your graph data here (or leave null to load via file upload)
+        const EMBEDDED_GRAPH_DATA = null; 
+        
+        // Load the graph data
+        async function loadGraph(filename = 'graph.json') {
+            try {
+                if (EMBEDDED_GRAPH_DATA) {
+                    graphData = EMBEDDED_GRAPH_DATA;
+                } else {
+                    const data = await window.fs.readFile(filename, { encoding: 'utf8' });
+                    graphData = JSON.parse(data);
+                }
+                
+                document.getElementById('nodeCount').textContent = graphData.nodes.length;
+                document.getElementById('edgeCount').textContent = graphData.edges.length;
+                
+                fitGraphToScreen();
+                render();
+            } catch (error) {
+                console.error('Error loading graph:', error);
+                if (!EMBEDDED_GRAPH_DATA) {
+                    console.log('Waiting for file upload...');
+                }
+            }
+        }
+        
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            if (graphData) render();
+        }
+        
+        function latLonToScreen(lat, lon) {
+            if (!graphData) return { x: 0, y: 0 };
+            
+            const nodes = graphData.nodes;
+            const minLat = Math.min(...nodes.map(n => n.lat));
+            const maxLat = Math.max(...nodes.map(n => n.lat));
+            const minLon = Math.min(...nodes.map(n => n.lon));
+            const maxLon = Math.max(...nodes.map(n => n.lon));
+            
+            const x = ((lon - minLon) / (maxLon - minLon)) * canvas.width * 0.8 + canvas.width * 0.1;
+            const y = canvas.height - (((lat - minLat) / (maxLat - minLat)) * canvas.height * 0.8 + canvas.height * 0.1);
+            
+            return { x, y };
+        }
+        
+        function screenToWorld(screenX, screenY) {
+            return {
+                x: (screenX - transform.x) / transform.scale,
+                y: (screenY - transform.y) / transform.scale
+            };
+        }
+        
+        function fitGraphToScreen() {
+            transform = { x: 0, y: 0, scale: 1 };
+        }
+
+        function getNodeAtPosition(x, y) {
+            if (!graphData) return null;
+            
+            const worldPos = screenToWorld(x, y);
+            const threshold = (nodeSize * 2) / transform.scale;
+            
+            for (const node of graphData.nodes) {
+                const pos = latLonToScreen(node.lat, node.lon);
+                const dx = worldPos.x - pos.x;
+                const dy = worldPos.y - pos.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                if (dist < threshold) {
+                    return node;
+                }
+            }
+            return null;
+        }
+
+        function getEdgeAtPosition(x, y) {
+            if (!graphData) return null;
+            
+            const worldPos = screenToWorld(x, y);
+            const threshold = 10 / transform.scale;
+            
+            for (const edge of graphData.edges) {
+                const nodeU = graphData.nodes.find(n => n.id === edge.u);
+                const nodeV = graphData.nodes.find(n => n.id === edge.v);
+                
+                if (nodeU && nodeV) {
+                    const posU = latLonToScreen(nodeU.lat, nodeU.lon);
+                    const posV = latLonToScreen(nodeV.lat, nodeV.lon);
+                    
+                    const dist = pointToLineDistance(
+                        worldPos.x, worldPos.y,
+                        posU.x, posU.y,
+                        posV.x, posV.y
+                    );
+                    
+                    if (dist < threshold) {
+                        return { edge, nodeU, nodeV };
+                    }
+                }
+            }
+            return null;
+        }
+
+        function pointToLineDistance(px, py, x1, y1, x2, y2) {
+            const A = px - x1;
+            const B = py - y1;
+            const C = x2 - x1;
+            const D = y2 - y1;
+            
+            const dot = A * C + B * D;
+            const lenSq = C * C + D * D;
+            let param = -1;
+            
+            if (lenSq !== 0) param = dot / lenSq;
+            
+            let xx, yy;
+            
+            if (param < 0) {
+                xx = x1;
+                yy = y1;
+            } else if (param > 1) {
+                xx = x2;
+                yy = y2;
+            } else {
+                xx = x1 + param * C;
+                yy = y1 + param * D;
+            }
+            
+            const dx = px - xx;
+            const dy = py - yy;
+            return Math.sqrt(dx * dx + dy * dy);
+        }
+
+        function showTooltip(content, x, y) {
+            tooltip.innerHTML = content;
+            tooltip.style.display = 'block';
+            tooltip.style.left = (x + 15) + 'px';
+            tooltip.style.top = (y + 15) + 'px';
+        }
+
+        function hideTooltip() {
+            tooltip.style.display = 'none';
+        }
+        
+        function render() {
+            if (!graphData) return;
+            
+            ctx.fillStyle = '#0a0e27';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.save();
+            ctx.translate(transform.x, transform.y);
+            ctx.scale(transform.scale, transform.scale);
+            
+            const showNodes = document.getElementById('showNodes').checked;
+            const showEdges = document.getElementById('showEdges').checked;
+            const showPOIs = document.getElementById('showPOIs').checked;
+            const showLabels = document.getElementById('showLabels').checked;
+            const showEdgeLabels = document.getElementById('showEdgeLabels').checked;
+            
+            // Draw edges
+            if (showEdges) {
+                graphData.edges.forEach(edge => {
+                    const nodeU = graphData.nodes.find(n => n.id === edge.u);
+                    const nodeV = graphData.nodes.find(n => n.id === edge.v);
+                    
+                    if (nodeU && nodeV) {
+                        const posU = latLonToScreen(nodeU.lat, nodeU.lon);
+                        const posV = latLonToScreen(nodeV.lat, nodeV.lon);
+                        
+                        const isHovered = hoveredEdge && hoveredEdge.edge.id === edge.id;
+                        
+                        ctx.beginPath();
+                        ctx.moveTo(posU.x, posU.y);
+                        ctx.lineTo(posV.x, posV.y);
+                        ctx.strokeStyle = isHovered ? 'rgba(96, 165, 250, 0.8)' : 'rgba(100, 150, 255, 0.3)';
+                        ctx.lineWidth = (isHovered ? edgeWidth * 1.5 : edgeWidth) / transform.scale;
+                        ctx.stroke();
+
+                        // Show edge labels if enabled
+                        if (showEdgeLabels && edge.length) {
+                            const midX = (posU.x + posV.x) / 2;
+                            const midY = (posU.y + posV.y) / 2;
+                            
+                            ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
+                            ctx.font = `${10 / transform.scale}px sans-serif`;
+                            const text = `${(edge.length / 1000).toFixed(1)}km`;
+                            const metrics = ctx.measureText(text);
+                            ctx.fillRect(
+                                midX - metrics.width / 2 - 3 / transform.scale,
+                                midY - 8 / transform.scale,
+                                metrics.width + 6 / transform.scale,
+                                12 / transform.scale
+                            );
+                            
+                            ctx.fillStyle = '#94a3b8';
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'middle';
+                            ctx.fillText(text, midX, midY);
+                        }
+                    }
+                });
+            }
+            
+            // Draw nodes
+            if (showNodes) {
+                graphData.nodes.forEach(node => {
+                    const pos = latLonToScreen(node.lat, node.lon);
+                    const hasPOIs = node.pois && node.pois.length > 0;
+                    const isHovered = hoveredNode && hoveredNode.id === node.id;
+                    
+                    const radius = (isHovered ? nodeSize * 1.3 : nodeSize) / transform.scale;
+                    
+                    // Node glow effect
+                    if (isHovered) {
+                        const gradient = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, radius * 2);
+                        gradient.addColorStop(0, hasPOIs ? 'rgba(245, 158, 11, 0.4)' : 'rgba(96, 165, 250, 0.4)');
+                        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                        ctx.fillStyle = gradient;
+                        ctx.beginPath();
+                        ctx.arc(pos.x, pos.y, radius * 2, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                    
+                    // Node circle
+                    ctx.beginPath();
+                    ctx.arc(pos.x, pos.y, radius, 0, Math.PI * 2);
+                    ctx.fillStyle = hasPOIs ? '#f59e0b' : '#60a5fa';
+                    ctx.fill();
+                    
+                    // Node border
+                    ctx.strokeStyle = isHovered ? '#fff' : (hasPOIs ? '#fb923c' : '#93c5fd');
+                    ctx.lineWidth = (isHovered ? 2.5 : 1.5) / transform.scale;
+                    ctx.stroke();
+                    
+                    // POI indicator
+                    if (hasPOIs && showPOIs) {
+                        ctx.beginPath();
+                        ctx.arc(pos.x, pos.y, radius * 1.8, 0, Math.PI * 2);
+                        ctx.strokeStyle = 'rgba(245, 158, 11, 0.5)';
+                        ctx.lineWidth = 2 / transform.scale;
+                        ctx.setLineDash([4 / transform.scale, 4 / transform.scale]);
+                        ctx.stroke();
+                        ctx.setLineDash([]);
+                    }
+                    
+                    // Node labels
+                    if (showLabels) {
+                        ctx.fillStyle = '#fff';
+                        ctx.font = `bold ${labelSize / transform.scale}px sans-serif`;
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.strokeStyle = '#0a0e27';
+                        ctx.lineWidth = 3 / transform.scale;
+                        ctx.strokeText(node.id, pos.x, pos.y - radius - 10 / transform.scale);
+                        ctx.fillText(node.id, pos.x, pos.y - radius - 10 / transform.scale);
+                    }
+                });
+            }
+            
+            ctx.restore();
+            
+            document.getElementById('zoomLevel').textContent = Math.round(transform.scale * 100) + '%';
+        }
+        
+        // Event listeners
+        canvas.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            lastMouse = { x: e.clientX, y: e.clientY };
+        });
+        
+        canvas.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+
+            if (isDragging) {
+                const dx = e.clientX - lastMouse.x;
+                const dy = e.clientY - lastMouse.y;
+                transform.x += dx;
+                transform.y += dy;
+                lastMouse = { x: e.clientX, y: e.clientY };
+                render();
+            } else {
+                // Check for hover
+                const node = getNodeAtPosition(mouseX, mouseY);
+                const edge = getEdgeAtPosition(mouseX, mouseY);
+                
+                if (node) {
+                    hoveredNode = node;
+                    hoveredEdge = null;
+                    canvas.style.cursor = 'pointer';
+                    
+                    let content = `<strong>Node ${node.id}</strong>`;
+                    if (node.pois && node.pois.length > 0) {
+                        content += '<div class="poi-list"><strong>POIs:</strong>';
+                        node.pois.forEach(poi => {
+                            content += `<div class="poi-item">🏢 ${poi}</div>`;
+                        });
+                        content += '</div>';
+                    }
+                    showTooltip(content, e.clientX, e.clientY);
+                    render();
+                } else if (edge) {
+                    hoveredNode = null;
+                    hoveredEdge = edge;
+                    canvas.style.cursor = 'pointer';
+                    
+                    let content = `<strong>Edge ${edge.edge.id}</strong>`;
+                    content += `<div class="edge-info">From: <span>${edge.edge.u}</span> → <span>${edge.edge.v}</span></div>`;
+                    if (edge.edge.length) {
+                        content += `<div class="edge-info">Length: <span>${(edge.edge.length / 1000).toFixed(2)} km</span></div>`;
+                    }
+                    if (edge.edge.average_time) {
+                        content += `<div class="edge-info">Avg Time: <span>${(edge.edge.average_time / 60).toFixed(1)} min</span></div>`;
+                    }
+                    if (edge.edge.road_type) {
+                        content += `<div class="edge-info">Type: <span>${edge.edge.road_type}</span></div>`;
+                    }
+                    showTooltip(content, e.clientX, e.clientY);
+                    render();
+                } else {
+                    if (hoveredNode || hoveredEdge) {
+                        hoveredNode = null;
+                        hoveredEdge = null;
+                        canvas.style.cursor = 'grab';
+                        hideTooltip();
+                        render();
+                    }
+                }
+            }
+        });
+        
+        canvas.addEventListener('mouseup', () => {
+            isDragging = false;
+            canvas.style.cursor = 'grab';
+        });
+
+        canvas.addEventListener('mouseleave', () => {
+            hoveredNode = null;
+            hoveredEdge = null;
+            hideTooltip();
+            render();
+        });
+        
+        canvas.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const delta = e.deltaY > 0 ? 0.9 : 1.1;
+            const newScale = transform.scale * delta;
+            
+            if (newScale > 0.1 && newScale < 10) {
+                const rect = canvas.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+                
+                transform.x = mouseX - (mouseX - transform.x) * delta;
+                transform.y = mouseY - (mouseY - transform.y) * delta;
+                transform.scale = newScale;
+                
+                render();
+            }
+        });
+        
+        document.getElementById('showNodes').addEventListener('change', render);
+        document.getElementById('showEdges').addEventListener('change', render);
+        document.getElementById('showPOIs').addEventListener('change', render);
+        document.getElementById('showLabels').addEventListener('change', render);
+        document.getElementById('showEdgeLabels').addEventListener('change', render);
+        
+        document.getElementById('nodeSize').addEventListener('input', (e) => {
+            nodeSize = parseInt(e.target.value);
+            document.getElementById('nodeSizeValue').textContent = nodeSize;
+            render();
+        });
+        
+        document.getElementById('edgeWidth').addEventListener('input', (e) => {
+            edgeWidth = parseInt(e.target.value);
+            document.getElementById('edgeWidthValue').textContent = edgeWidth;
+            render();
+        });
+        
+        document.getElementById('labelSize').addEventListener('input', (e) => {
+            labelSize = parseInt(e.target.value);
+            document.getElementById('labelSizeValue').textContent = labelSize;
+            render();
+        });
+        
+        document.getElementById('loadButton').addEventListener('click', () => {
+            document.getElementById('fileInput').click();
+        });
+        
+        document.getElementById('resetView').addEventListener('click', () => {
+            fitGraphToScreen();
+            render();
+        });
+        
+        // File upload handler
+        document.getElementById('fileInput').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    try {
+                        graphData = JSON.parse(event.target.result);
+                        document.getElementById('nodeCount').textContent = graphData.nodes.length;
+                        document.getElementById('edgeCount').textContent = graphData.edges.length;
+                        fitGraphToScreen();
+                        render();
+                    } catch (error) {
+                        alert('Error parsing JSON file: ' + error.message);
+                    }
+                };
+                reader.readAsText(file);
+            }
+        });
+        
+        window.addEventListener('resize', resizeCanvas);
+        
+        // Initialize
+        resizeCanvas();
+        loadGraph();
+    </script>
+</body>
+</html>

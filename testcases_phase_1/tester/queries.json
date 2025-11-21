@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "id": "phase1_comprehensive_queries"
+  },
+  "events": [
+    {
+      "type": "shortest_path",
+      "id": 13,
+      "source": 18,
+      "target": 8,
+      "mode": "time",
+      "constraints": {
+        "forbidden_road_types": [
+          "secondary"
+        ]
+      }
+    }
+  ]
+}
