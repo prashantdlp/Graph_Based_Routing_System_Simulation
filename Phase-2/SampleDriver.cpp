@@ -35,13 +35,20 @@ void process_graph_file(std::ifstream& graph_file, Graph& G)
         int v = edge_json["v"];
         double length = edge_json["length"];
         double avg_time = edge_json["average_time"];
-        std::vector<double> speed_profile;
-        if (edge_json.contains("speed_profile") && edge_json["speed_profile"].is_array()) 
+        if (edge_json.contains("speed_profile") && edge_json["speed_profile"].is_array())
         {
             speed_profile = edge_json["speed_profile"].get<std::vector<double>>();
         }
-        bool oneway = edge_json["oneway"];
-        std::string road_type = edge_json["road_type"];
+        bool oneway = false; 
+        if(edge_json.contains("oneway"))
+        {
+            oneway = edge_json["oneway"];
+        }    
+        std::string road_type = "primary" ; 
+        if(edge_json.contains("road_type"))
+        {
+            road_type = edge_json["road_type"];
+        }
         G.addEdge(id, u, v, length, avg_time, speed_profile, oneway, road_type);
     }
 }

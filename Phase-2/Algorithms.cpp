@@ -273,7 +273,7 @@ double Algorithms::approx_shortest_paths( // TODO: implement
     return -1.0; // unreachable
 }
 
-std::vector<std::pair<std::vector<int>, int>> Algorithms::k_shortest_paths_heuristic(
+std::vector<std::pair<std::vector<double>, double>> Algorithms::k_shortest_paths_heuristic(
     const Graph &graph,
     int source,
     int target,
@@ -285,9 +285,9 @@ std::vector<std::pair<std::vector<int>, int>> Algorithms::k_shortest_paths_heuri
     const double INF = 1e18;
 
     // ----------------- Utility: reconstruct paths -----------------
-    auto reconstruct = [&](int t, const vector<int> &parent)
+    auto reconstruct = [&](double t, const vector<double> &parent)
     {
-        vector<int> path;
+        vector<double> path;
         for (int v = t; v != -1; v = parent[v])
             path.push_back(v);
         reverse(path.begin(), path.end());
@@ -295,11 +295,11 @@ std::vector<std::pair<std::vector<int>, int>> Algorithms::k_shortest_paths_heuri
     };
 
     // ----------------- A* with edge penalties -----------------
-    auto runAstar = [&](const unordered_map<int, double> &penalty) -> pair<vector<int>, double>
+    auto runAstar = [&](const unordered_map<double, double> &penalty) -> pair<vector<double>, double>
     {
         int N = graph.size();
         vector<double> dist(N, INF);
-        vector<int> parent(N, -1);
+        vector<double> parent(N, -1);
 
         struct State
         {
@@ -309,7 +309,7 @@ std::vector<std::pair<std::vector<int>, int>> Algorithms::k_shortest_paths_heuri
         };
         priority_queue<State> pq;
 
-        auto h = [&](int u)
+        auto h = [&](double u)
         {
             const Node *nu = graph.getNode(u);
             const Node *nt = graph.getNode(target);
@@ -351,31 +351,31 @@ std::vector<std::pair<std::vector<int>, int>> Algorithms::k_shortest_paths_heuri
     };
 
     // ---------- STEP 1: Find true shortest path ----------
-    vector<pair<vector<int>, int>> result;
-    unordered_map<int, double> noPenalty;
+    vector<pair<vector<double>, double>> result;
+    unordered_map<double, double> noPenalty;
 
     auto [bestPath, bestDist] = runAstar(noPenalty);
     if (bestDist >= INF)
         return result; // unreachable
 
-    result.push_back({bestPath, (int)bestDist});
+    result.push_back({bestPath, (double)bestDist});
 
     // ---------- Store edges of previous paths ----------
-    auto collectEdges = [&](const vector<int> &path)
+    auto collectEdges = [&](const vector<double> &path)
     {
-        vector<pair<int, int>> edges;
+        vector<pair<double, double>> edges;
         for (int i = 0; i + 1 < path.size(); i++)
             edges.emplace_back(path[i], path[i + 1]);
         return edges;
     };
 
-    vector<vector<pair<int, int>>> prevEdges;
+    vector<vector<pair<double, double>>> prevEdges;
     prevEdges.push_back(collectEdges(bestPath));
 
     // ---------- STEP 2: Find next k−1 diverse paths ----------
     for (int i = 1; i < k; i++)
     {
-        unordered_map<int, double> penalty;
+        unordered_map<double, double> penalty;
 
         // assign penalty weights to edges used previously
         for (auto &pe : prevEdges)
@@ -405,8 +405,8 @@ std::vector<std::pair<std::vector<int>, int>> Algorithms::k_shortest_paths_heuri
         bool good = true;
         for (auto &pe : prevEdges)
         {
-            int overlapCnt = 0;
-            int total = e_current.size();
+            double overlapCnt = 0;
+            double total = e_current.size();
 
             for (auto &[u1, v1] : e_current)
             {

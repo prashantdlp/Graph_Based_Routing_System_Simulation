@@ -40,8 +40,16 @@ void process_graph_file(std::ifstream &graph_file, Graph &G)
         {
             speed_profile = edge_json["speed_profile"].get<std::vector<double>>();
         }
-        bool oneway = edge_json["oneway"];
-        std::string road_type = edge_json["road_type"];
+        bool oneway = false; 
+        if(edge_json.contains("oneway"))
+        {
+            oneway = edge_json["oneway"];
+        }    
+        std::string road_type = "primary" ; 
+        if(edge_json.contains("road_type"))
+        {
+            road_type = edge_json["road_type"];
+        }
         G.addEdge(id, u, v, length, avg_time, speed_profile, oneway, road_type);
     }
 }

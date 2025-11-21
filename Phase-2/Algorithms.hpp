@@ -35,7 +35,7 @@ public:
         float acceptable_error_pct
     );
 
-    static std::vector<std::pair<std::vector<int>, int>> k_shortest_paths_heuristic(
+    static std::vector<std::pair<std::vector<double>, double>> k_shortest_paths_heuristic(
         const Graph& graph,
         int source,
         int target,
