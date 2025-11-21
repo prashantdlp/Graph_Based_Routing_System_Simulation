@@ -109,8 +109,8 @@ const std::vector<Edge *> &Graph::getAdjacentEdges(int node_id) const
 const std::vector<Edge *> &Graph::getIncomingEdges(int node_id) const
 {
     static const std::vector<Edge *> empty;
-    auto it = adj_list.find(node_id);
-    if (it != adj_list.end())
+    auto it = inc_list.find(node_id);
+    if (it != inc_list.end())
         return it->second;
     return empty;
 }
