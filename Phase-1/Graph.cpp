@@ -100,10 +100,11 @@ bool Graph::modifyEdge(int edge_id, const Edge &patch)
 
 const std::vector<Edge *> &Graph::getAdjacentEdges(int node_id) const
 {
+    static const std::vector<Edge *> empty;
     auto it = adj_list.find(node_id);
     if (it != adj_list.end())
         return it->second;
-    return std::vector<Edge *>{};
+    return empty;
 }
 
 std::vector<int> Graph::getNodesWithPOI(const std::string &poi) const
