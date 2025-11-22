@@ -18,7 +18,7 @@ void process_graph_file(std::ifstream& graph_file, Graph& G)
     int num_nodes = graph_json["meta"]["nodes"];
     G = Graph();
 
-    // --- Parse nodes ---
+    //Parse nodes 
     for (auto& node_json : graph_json["nodes"]) 
     {
         int id = node_json["id"];
@@ -35,7 +35,7 @@ void process_graph_file(std::ifstream& graph_file, Graph& G)
         G.addNode(id, lat, lon, pois);
     }
 
-    // --- Parse edges ---
+    //Parse edges
     for (auto& edge_json : graph_json["edges"]) 
     {
         int id = edge_json["id"];
