@@ -1,0 +1,715 @@
+{
+  "meta": {
+    "id": "phase1_comprehensive_queries"
+  },
+  "events": [
+    {
+      "id": 1,
+      "type": "modify_edge",
+      "edge_id": 1112,
+      "patch": {
+        "length": 1512.41,
+        "road_type": "secondary"
+      }
+    },
+    {
+      "type": "shortest_path",
+      "id": 2,
+      "source": 29,
+      "target": 5,
+      "mode": "distance",
+      "constraints": {
+        "forbidden_nodes": [
+          28,
+          6,
+          19
+        ],
+        "forbidden_road_types": [
+          "secondary",
+          "primary"
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "type": "remove_edge",
+      "edge_id": 1128
+    },
+    {
+      "type": "knn",
+      "id": 4,
+      "poi": "petrol station",
+      "query_point": {
+        "lat": 19.07385,
+        "lon": 72.891883
+      },
+      "k": 2,
+      "metric": "shortest_path"
+    },
+    {
+      "type": "shortest_path",
+      "id": 5,
+      "source": 26,
+      "target": 23,
+      "mode": "distance"
+    },
+    {
+      "id": 6,
+      "type": "modify_edge",
+      "edge_id": 1093,
+      "patch": {}
+    },
+    {
+      "type": "knn",
+      "id": 7,
+      "poi": "restaurant",
+      "query_point": {
+        "lat": 19.108598,
+        "lon": 72.862634
+      },
+      "k": 100,
+      "metric": "euclidean"
+    },
+    {
+      "type": "k_shortest_paths",
+      "id": 8,
+      "source": {
+        "lat": 19.041302,
+        "lon": 72.868385
+      },
+      "target": {
+        "lat": 19.103252,
+        "lon": 72.881016
+      },
+      "k": 5,
+      "mode": "time"
+    },
+    {
+      "type": "shortest_path",
+      "id": 9,
+      "source": 8,
+      "target": 27,
+      "mode": "distance"
+    },
+    {
+      "type": "shortest_path",
+      "id": 10,
+      "source": 22,
+      "target": 0,
+      "mode": "distance",
+      "constraints": {
+        "forbidden_nodes": [
+          18,
+          6
+        ]
+      }
+    },
+    {
+      "type": "shortest_path",
+      "id": 11,
+      "source": 19,
+      "target": 22,
+      "mode": "time"
+    },
+    {
+      "type": "knn",
+      "id": 12,
+      "poi": "petrol station",
+      "query_point": {
+        "lat": 19.036412,
+        "lon": 72.858298
+      },
+      "k": 5,
+      "metric": "euclidean"
+    },
+    {
+      "type": "k_shortest_paths",
+      "id": 13,
+      "source": {
+        "lat": 19.100459,
+        "lon": 72.891829
+      },
+      "target": {
+        "lat": 19.069248,
+        "lon": 72.83628
+      },
+      "k": 3,
+      "mode": "time"
+    },
+    {
+      "id": 14,
+      "type": "modify_edge",
+      "edge_id": 1148,
+      "patch": {
+        "length": 1801.97,
+        "average_time": 37.92
+      }
+    },
+    {
+      "type": "shortest_path",
+      "id": 15,
+      "source": 5,
+      "target": 16,
+      "mode": "time",
+      "constraints": {
+        "forbidden_road_types": [
+          "tertiary"
+        ]
+      }
+    },
+    {
+      "type": "shortest_path",
+      "id": 16,
+      "source": 1,
+      "target": 2,
+      "mode": "time"
+    },
+    {
+      "type": "knn",
+      "id": 17,
+      "poi": "hotel",
+      "query_point": {
+        "lat": 19.073491,
+        "lon": 72.839847
+      },
+      "k": 4,
+      "metric": "shortest_path"
+    },
+    {
+      "type": "knn",
+      "id": 18,
+      "poi": "petrol station",
+      "query_point": {
+        "lat": 19.075226,
+        "lon": 72.889513
+      },
+      "k": 4,
+      "metric": "shortest_path"
+    },
+    {
+      "type": "knn",
+      "id": 19,
+      "poi": "pharmacy",
+      "query_point": {
+        "lat": 19.064082,
+        "lon": 72.872305
+      },
+      "k": 4,
+      "metric": "euclidean"
+    },
+    {
+      "id": 20,
+      "type": "remove_edge",
+      "edge_id": 1112
+    },
+    {
+      "type": "shortest_path",
+      "id": 21,
+      "source": 5,
+      "target": 20,
+      "mode": "time",
+      "constraints": {
+        "forbidden_road_types": [
+          "local",
+          "tertiary"
+        ]
+      }
+    },
+    {
+      "id": 22,
+      "type": "modify_edge",
+      "edge_id": 1000,
+      "patch": {}
+    },
+    {
+      "type": "k_shortest_paths",
+      "id": 23,
+      "source": {
+        "lat": 19.043894,
+        "lon": 72.91353
+      },
+      "target": {
+        "lat": 19.07078,
+        "lon": 72.827783
+      },
+      "k": 3,
+      "mode": "distance"
+    },
+    {
+      "type": "knn",
+      "id": 24,
+      "poi": "atm",
+      "query_point": {
+        "lat": 19.096198,
+        "lon": 72.862619
+      },
+      "k": 3,
+      "metric": "shortest_path"
+    },
+    {
+      "type": "knn",
+      "id": 25,
+      "poi": "hospital",
+      "query_point": {
+        "lat": 19.067176,
+        "lon": 72.849831
+      },
+      "k": 2,
+      "metric": "shortest_path"
+    },
+    {
+      "id": 26,
+      "type": "remove_edge",
+      "edge_id": 1142
+    },
+    {
+      "type": "shortest_path",
+      "id": 27,
+      "source": 27,
+      "target": 12,
+      "mode": "distance",
+      "constraints": {
+        "forbidden_nodes": [
+          11,
+          3,
+          21
+        ]
+      }
+    },
+    {
+      "type": "shortest_path",
+      "id": 28,
+      "source": 1,
+      "target": 0,
+      "mode": "distance",
+      "constraints": {
+        "forbidden_nodes": [
+          29,
+          13,
+          18,
+          20
+        ]
+      }
+    },
+    {
+      "type": "shortest_path",
+      "id": 29,
+      "source": 22,
+      "target": 3,
+      "mode": "time",
+      "constraints": {
+        "forbidden_nodes": [
+          17
+        ],
+        "forbidden_road_types": [
+          "tertiary"
+        ]
+      }
+    },
+    {
+      "type": "shortest_path",
+      "id": 30,
+      "source": 4,
+      "target": 4,
+      "mode": "distance"
+    },
+    {
+      "id": 31,
+      "type": "remove_edge",
+      "edge_id": 1092
+    },
+    {
+      "id": 32,
+      "type": "modify_edge",
+      "edge_id": 1142,
+      "patch": {}
+    },
+    {
+      "id": 33,
+      "type": "modify_edge",
+      "edge_id": 1142,
+      "patch": {
+        "length": 500.0
+      }
+    },
+    {
+      "type": "knn",
+      "id": 34,
+      "poi": "petrol station",
+      "query_point": {
+        "lat": 19.04645,
+        "lon": 72.856731
+      },
+      "k": 4,
+      "metric": "euclidean"
+    },
+    {
+      "id": 35,
+      "type": "modify_edge",
+      "edge_id": 1021,
+      "patch": {
+        "length": 2999.31
+      }
+    },
+    {
+      "id": 36,
+      "type": "modify_edge",
+      "edge_id": 1251,
+      "patch": {
+        "length": 100.0
+      }
+    },
+    {
+      "type": "shortest_path",
+      "id": 37,
+      "source": 12,
+      "target": 23,
+      "mode": "distance"
+    },
+    {
+      "type": "shortest_path",
+      "id": 38,
+      "source": 1,
+      "target": 29,
+      "mode": "distance",
+      "constraints": {
+        "forbidden_nodes": [
+          19
+        ],
+        "forbidden_road_types": [
+          "local",
+          "tertiary"
+        ]
+      }
+    },
+    {
+      "type": "shortest_path",
+      "id": 39,
+      "source": 15,
+      "target": 8,
+      "mode": "time"
+    },
+    {
+      "type": "knn",
+      "id": 40,
+      "poi": "hotel",
+      "query_point": {
+        "lat": 19.102942,
+        "lon": 72.84985
+      },
+      "k": 3,
+      "metric": "shortest_path"
+    },
+    {
+      "id": 41,
+      "type": "modify_edge",
+      "edge_id": 1063,
+      "patch": {
+        "length": 3030.6,
+        "road_type": "expressway"
+      }
+    },
+    {
+      "type": "shortest_path",
+      "id": 42,
+      "source": 26,
+      "target": 12,
+      "mode": "distance"
+    },
+    {
+      "type": "shortest_path",
+      "id": 43,
+      "source": 26,
+      "target": 23,
+      "mode": "distance"
+    },
+    {
+      "type": "shortest_path",
+      "id": 44,
+      "source": 8,
+      "target": 2,
+      "mode": "time"
+    },
+    {
+      "id": 45,
+      "type": "remove_edge",
+      "edge_id": 1034
+    },
+    {
+      "id": 46,
+      "type": "modify_edge",
+      "edge_id": 1034,
+      "patch": {}
+    },
+    {
+      "type": "shortest_path",
+      "id": 47,
+      "source": 3,
+      "target": 28,
+      "mode": "distance"
+    },
+    {
+      "type": "shortest_path",
+      "id": 48,
+      "source": 19,
+      "target": 6,
+      "mode": "time",
+      "constraints": {
+        "forbidden_road_types": [
+          "local"
+        ]
+      }
+    },
+    {
+      "id": 49,
+      "type": "remove_edge",
+      "edge_id": 1093
+    },
+    {
+      "type": "k_shortest_paths",
+      "id": 50,
+      "source": {
+        "lat": 19.119703,
+        "lon": 72.846138
+      },
+      "target": {
+        "lat": 19.071333,
+        "lon": 72.900341
+      },
+      "k": 4,
+      "mode": "time"
+    },
+    {
+      "type": "shortest_path",
+      "id": 51,
+      "source": 20,
+      "target": 10,
+      "mode": "time",
+      "constraints": {
+        "forbidden_nodes": [
+          19,
+          25,
+          28,
+          7,
+          3
+        ],
+        "forbidden_road_types": [
+          "local",
+          "secondary"
+        ]
+      }
+    },
+    {
+      "id": 52,
+      "type": "modify_edge",
+      "edge_id": 1128,
+      "patch": {
+        "length": 1776.65,
+        "road_type": "expressway"
+      }
+    },
+    {
+      "type": "shortest_path",
+      "id": 53,
+      "source": 27,
+      "target": 29,
+      "mode": "distance",
+      "constraints": {
+        "forbidden_nodes": [
+          23,
+          4,
+          0,
+          25,
+          20,
+          12,
+          26,
+          19,
+          3,
+          7
+        ]
+      }
+    },
+    {
+      "type": "shortest_path",
+      "id": 54,
+      "source": 17,
+      "target": 16,
+      "mode": "distance"
+    },
+    {
+      "type": "shortest_path",
+      "id": 55,
+      "source": 25,
+      "target": 21,
+      "mode": "time"
+    },
+    {
+      "type": "shortest_path",
+      "id": 56,
+      "source": 25,
+      "target": 26,
+      "mode": "distance",
+      "constraints": {
+        "forbidden_nodes": [
+          24,
+          29,
+          8,
+          10
+        ]
+      }
+    },
+    {
+      "type": "shortest_path",
+      "id": 57,
+      "source": 28,
+      "target": 17,
+      "mode": "distance",
+      "constraints": {
+        "forbidden_nodes": [
+          11,
+          19,
+          9
+        ]
+      }
+    },
+    {
+      "type": "knn",
+      "id": 58,
+      "poi": "hospital",
+      "query_point": {
+        "lat": 19.076619,
+        "lon": 72.899996
+      },
+      "k": 4,
+      "metric": "euclidean"
+    },
+    {
+      "type": "shortest_path",
+      "id": 59,
+      "source": 5,
+      "target": 8,
+      "mode": "time",
+      "constraints": {
+        "forbidden_road_types": [
+          "expressway"
+        ]
+      }
+    },
+    {
+      "type": "shortest_path",
+      "id": 60,
+      "source": 4,
+      "target": 22,
+      "mode": "time"
+    },
+    {
+      "id": 61,
+      "type": "modify_edge",
+      "edge_id": 1150,
+      "patch": {
+        "length": 4637.03,
+        "road_type": "primary"
+      }
+    },
+    {
+      "type": "shortest_path",
+      "id": 62,
+      "source": 19,
+      "target": 5,
+      "mode": "distance"
+    },
+    {
+      "type": "shortest_path",
+      "id": 63,
+      "source": 6,
+      "target": 2,
+      "mode": "distance",
+      "constraints": {
+        "forbidden_nodes": [
+          24,
+          11
+        ],
+        "forbidden_road_types": [
+          "secondary",
+          "tertiary"
+        ]
+      }
+    },
+    {
+      "id": 64,
+      "type": "modify_edge",
+      "edge_id": 1147,
+      "patch": {
+        "length": 6718.99,
+        "road_type": "primary",
+        "average_time": 109.76
+      }
+    },
+    {
+      "type": "shortest_path",
+      "id": 65,
+      "source": 10,
+      "target": 5,
+      "mode": "time",
+      "constraints": {
+        "forbidden_nodes": [
+          25
+        ],
+        "forbidden_road_types": [
+          "tertiary",
+          "secondary"
+        ]
+      }
+    },
+    {
+      "id": 66,
+      "type": "remove_edge",
+      "edge_id": 1093
+    },
+    {
+      "type": "shortest_path",
+      "id": 67,
+      "source": 26,
+      "target": 23,
+      "mode": "distance"
+    },
+    {
+      "type": "knn",
+      "id": 68,
+      "poi": "pharmacy",
+      "query_point": {
+        "lat": 19.113282,
+        "lon": 72.896565
+      },
+      "k": 5,
+      "metric": "euclidean"
+    },
+    {
+      "type": "k_shortest_paths",
+      "id": 69,
+      "source": {
+        "lat": 19.098239,
+        "lon": 72.908545
+      },
+      "target": {
+        "lat": 19.080419,
+        "lon": 72.888519
+      },
+      "k": 4,
+      "mode": "distance"
+    },
+    {
+      "type": "shortest_path",
+      "id": 70,
+      "source": 8,
+      "target": 16,
+      "mode": "time",
+      "constraints": {
+        "forbidden_road_types": [
+          "tertiary",
+          "expressway"
+        ]
+      }
+    }
+  ]
+}
