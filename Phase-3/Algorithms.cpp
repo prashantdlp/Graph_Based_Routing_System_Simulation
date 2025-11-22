@@ -263,15 +263,15 @@
 #include <unordered_map>
 #include <set>
 
-std::pair<std::vector<std::tuple<int,std::vector<int>,std::vector<int>>>,double>
+std::pair<std::vector<std::tuple<int, std::vector<int>, std::vector<int>>>, double>
 Algorithms::tsp(
-    const Graph& graph,
-    std::vector<std::tuple<int,int,int>> orders,
+    const Graph &graph,
+    std::vector<std::tuple<int, int, int>> orders,
     int num_delivery_guys,
-    int depot_node
-){
+    int depot_node)
+{
     using namespace std;
-    if(num_delivery_guys <= 0)
+    if (num_delivery_guys <= 0)
         return {{}, 1e9};
 
     // Caches
@@ -291,7 +291,7 @@ Algorithms::tsp(
 
         dist[src] = 0.0;
 
-        using P = std::pair<double,int>;
+        using P = std::pair<double, int>;
         std::priority_queue<P, std::vector<P>, std::greater<P>> pq;
         pq.push({0.0, src});
 
@@ -318,10 +318,9 @@ Algorithms::tsp(
         }
 
         // Store into cache
-        dist_cache[src]   = std::move(dist);
+        dist_cache[src] = std::move(dist);
         parent_cache[src] = std::move(parent);
     };
-
 
     // --------------------------------------------------
     // shortest path: u -> v
@@ -332,7 +331,7 @@ Algorithms::tsp(
         // Ensure dijkstra(u) is computed
         dijkstra(u);
 
-        const auto &dist   = dist_cache[u];
+        const auto &dist = dist_cache[u];
         const auto &parent = parent_cache[u];
 
         if (!std::isfinite(dist[v]))
@@ -351,7 +350,6 @@ Algorithms::tsp(
         return path;
     };
 
-
     double time_of_delivery = 0.0;
     vector<tuple<int, vector<int>, vector<int>>> delivery_guy_routes;
 
@@ -367,37 +365,36 @@ Algorithms::tsp(
         int g = i % num_delivery_guys;
 
         vector<int> ans = get_path(last_position[g], pickup);
-        if (ans.empty()) return {{}, 1e9};
+        if (ans.empty())
+            return {{}, 1e9};
 
         vector<int> mid = get_path(pickup, delivery);
-        if (mid.empty()) return {{}, 1e9};
+        if (mid.empty())
+            return {{}, 1e9};
 
         last_position[g] = delivery;
 
-        // avoid duplicate pickup node 
+        // avoid duplicate pickup node
         ans.insert(ans.end(), mid.begin() + 1, mid.end());
 
         path_delivery_guy[g].insert(
             path_delivery_guy[g].end(),
-            ans.begin(), ans.end()
-        );
+            ans.begin(), ans.end());
 
         delivery_guy_assigned_orders[g].push_back(get<0>(orders[i]));
 
         for (int k = 1; k < ans.size(); k++)
         {
-            const Edge* e = graph.getEdge(ans[k - 1], ans[k]);
-            time_of_delivery += e->average_time;   // FIXED
+            const Edge *e = graph.getEdge(ans[k - 1], ans[k]);
+            time_of_delivery += e->average_time; // FIXED
         }
     }
 
     for (int i = 0; i < num_delivery_guys; i++)
     {
-        delivery_guy_routes.push_back({
-            i,
-            delivery_guy_assigned_orders[i],
-            path_delivery_guy[i]
-        });
+        delivery_guy_routes.push_back({i,
+                                       delivery_guy_assigned_orders[i],
+                                       path_delivery_guy[i]});
     }
 
     return {delivery_guy_routes, time_of_delivery};
