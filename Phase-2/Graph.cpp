@@ -57,9 +57,9 @@ const Node *Graph::getNode(int id) const
     return it->second;
 }
 
-const Edge *Graph::getEdge(int u, int v) const
-{
-}
+// const Edge *Graph::getEdge(int u, int v) const
+// {
+// }
 
 bool Graph::removeEdge(int edge_id)
 {

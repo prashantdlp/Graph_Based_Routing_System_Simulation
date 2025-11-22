@@ -15,7 +15,7 @@ void process_graph_file(std::ifstream& graph_file, Graph& G)
     graph_file.close();
     
     // Number of nodes (optional, but we can resize in advance)
-    int num_nodes = graph_json["meta"]["nodes"];
+    // int num_nodes = graph_json["meta"]["nodes"];
     G = Graph();
 
     //Parse nodes 
@@ -62,7 +62,7 @@ void process_graph_file(std::ifstream& graph_file, Graph& G)
     }
 }
 
-json process_query(const json &query, std::ifstream &graph_file, Graph &G) 
+json process_query(const json &query, Graph &G) 
 {
     json result ;
     Algorithms A;
@@ -75,7 +75,7 @@ json process_query(const json &query, std::ifstream &graph_file, Graph &G)
         int k = query["k"];
         std::string mode = query["mode"];
         result["paths"] = json::array();
-        auto paths = A.k_shortest_paths(G, source, target, k, mode);
+        auto paths = A.k_shortest_paths(G, source, target, k);
         for (const auto& p : paths) {
             json pathObj;
             pathObj["path"] = p.first;
@@ -154,7 +154,7 @@ int main(int argc, char* argv[])
         auto start_time = std::chrono::high_resolution_clock::now();
         json result;
         try {
-            result = process_query(query,graph_file, G);
+            result = process_query(query, G);
         } 
         catch (const std::exception &e) {
             result["error"] = std::string("exception: ") + e.what();

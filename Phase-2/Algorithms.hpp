@@ -23,8 +23,7 @@ public:
         const Graph& graph,
         int source,
         int target,
-        int k,
-        const std::string& mode
+        int k
     );
 
     static double approx_shortest_paths(

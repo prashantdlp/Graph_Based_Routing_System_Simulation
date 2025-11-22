@@ -51,12 +51,13 @@ std::vector<std::pair<std::vector<int>, double>> Algorithms::k_shortest_paths(
     const Graph &graph,
     int source,
     int target,
-    int k,
-    const std::string &mode)
+    int k
+)
+    
 {
     std::vector<std::pair<std::vector<int>, double>> result;
     result.reserve(k);
-    int n = graph.size();
+    // int n = graph.size();
     std::vector<double> h = compute_heuristic(graph, target);
 
     std::priority_queue<
@@ -70,7 +71,7 @@ std::vector<std::pair<std::vector<int>, double>> Algorithms::k_shortest_paths(
 
     double worst_path_cost = std::numeric_limits<double>::max(); 
 
-    while (!pq.empty() && result.size() < k)
+    while (!pq.empty() && (int)result.size() < k)
     {
         auto top_element = pq.top();
         pq.pop();
@@ -80,7 +81,7 @@ std::vector<std::pair<std::vector<int>, double>> Algorithms::k_shortest_paths(
         const auto &path_vector = top_element.second.second;
         int curr = path_vector.back();
 
-        if (result.size() == k && h_prediction > worst_path_cost)
+        if ((int)result.size() == k && h_prediction > worst_path_cost)
         {
             break;
         }
@@ -365,7 +366,7 @@ std::vector<std::pair<std::vector<double>, double>> Algorithms::k_shortest_paths
     auto collectEdges = [&](const vector<double> &path)
     {
         vector<pair<double, double>> edges;
-        for (int i = 0; i + 1 < path.size(); i++)
+        for (int i = 0; i + 1 < (int)path.size(); i++)
             edges.emplace_back(path[i], path[i + 1]);
         return edges;
     };
