@@ -16,7 +16,7 @@ Graph::~Graph()
 
 // Add node
 void Graph::addNode(int id, double lat, double lon, const std::vector<std::string> &names)
-{ // TODO:: names to pois
+{ 
 
     Node *node = new Node(id, lat, lon, names);
 
