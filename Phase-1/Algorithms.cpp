@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <cmath>
 
-std::tuple<bool, double, std::vector<int>> Shortest_paths_distance( // TODO:OPTIMIZATIONS>>>
+std::tuple<bool, double, std::vector<int>> Shortest_paths_distance(
     const Graph &graph,
     int source,
     int target,
@@ -189,7 +189,7 @@ std::tuple<bool, double, std::vector<int>> Shortest_paths_speed(
             break;
 
         for (auto edge : graph.getAdjacentEdges(u))
-        { // TODO: consider edge is active or not??
+        {
             if (forbidden_r.find(edge->road_type) == forbidden_r.end() && edge->active)
             {
                 double time_edge = Edge_time(edge, current_time);
