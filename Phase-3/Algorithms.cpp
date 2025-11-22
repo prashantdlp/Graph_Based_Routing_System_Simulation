@@ -365,7 +365,7 @@ Algorithms::tsp(
         int g = i % num_delivery_guys;
 
         vector<int> ans = get_path(last_position[g], pickup);
-        if (ans.empty())
+        if (pickup != last_position[g] && ans.empty())
             return {{}, 1e9};
 
         vector<int> mid = get_path(pickup, delivery);
@@ -373,13 +373,12 @@ Algorithms::tsp(
             return {{}, 1e9};
 
         last_position[g] = delivery;
-
         // avoid duplicate pickup node
         ans.insert(ans.end(), mid.begin() + 1, mid.end());
 
         path_delivery_guy[g].insert(
             path_delivery_guy[g].end(),
-            ans.begin(), ans.end());
+            ans.begin() + 1, ans.end());
 
         delivery_guy_assigned_orders[g].push_back(get<0>(orders[i]));
 
@@ -393,8 +392,8 @@ Algorithms::tsp(
     for (int i = 0; i < num_delivery_guys; i++)
     {
         delivery_guy_routes.push_back({i,
-                                       delivery_guy_assigned_orders[i],
-                                       path_delivery_guy[i]});
+                                       path_delivery_guy[i],
+                                       delivery_guy_assigned_orders[i]});
     }
 
     return {delivery_guy_routes, time_of_delivery};
