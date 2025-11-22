@@ -6,7 +6,7 @@
 #include <tuple>
 #include <string>
 #include <utility>
-#include  <unordered_map>
+#include <unordered_map>
 
 struct constraints {
     std::vector<int> forbidden_nodes;
