@@ -1,8 +1,8 @@
 # --- Compiler and Flags ---
 # Use g++ as the C++ compiler
 CXX = g++
-# Set compiler flags: C++17 standard, all warnings, extra warnings, O2 optimization, and debug symbols
-CXXFLAGS = -std=c++17 -Wall -Wextra -O2 -g
+# Set compiler flags: C++17 standard, all warnings, extra warnings, O3 optimization, and debug symbols
+CXXFLAGS = -std=c++17 -Wall -Wextra -O3 -g
 
 # Set include paths (CPPFLAGS): root dir, Phase-1, Phase-2, Phase-3
 # This allows you to #include "Header.hpp" from any file
