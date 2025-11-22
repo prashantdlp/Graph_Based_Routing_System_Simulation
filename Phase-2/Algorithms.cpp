@@ -60,15 +60,15 @@ std::vector<std::pair<std::vector<int>, double>> Algorithms::k_shortest_paths(
     std::vector<double> h = compute_heuristic(graph, target);
 
     std::priority_queue<
-        std::pair<double, std::pair<double, std::vector<int>>>, // FIX #2: int → double
+        std::pair<double, std::pair<double, std::vector<int>>>, 
         std::vector<std::pair<double, std::pair<double, std::vector<int>>>>,
         std::greater<>>
         pq;
 
     std::set<std::vector<int>> completed_paths;
-    pq.push({h[source], {0.0, std::vector<int>{source}}}); // FIX #2: 0 → 0.0
+    pq.push({h[source], {0.0, std::vector<int>{source}}}); 
 
-    double worst_path_cost = std::numeric_limits<double>::max(); // FIX #1: int::max → double::max
+    double worst_path_cost = std::numeric_limits<double>::max(); 
 
     while (!pq.empty() && result.size() < k)
     {
@@ -91,7 +91,7 @@ std::vector<std::pair<std::vector<int>, double>> Algorithms::k_shortest_paths(
             {
                 result.push_back({path_vector, length});
                 completed_paths.insert(path_vector);
-                worst_path_cost = std::min(worst_path_cost, length); // FIX #3: ADD THIS
+                worst_path_cost = std::min(worst_path_cost, length); 
             }
             continue;
         }
@@ -123,7 +123,7 @@ std::vector<std::pair<std::vector<int>, double>> Algorithms::k_shortest_paths(
     return result;
 }
 
-double Algorithms::approx_shortest_paths( // TODO: implement
+double Algorithms::approx_shortest_paths( 
     const Graph &graph,
     int source,
     int target,
@@ -145,7 +145,7 @@ double Algorithms::approx_shortest_paths( // TODO: implement
     vector<double> distF(N, INF), distB(N, INF);
     vector<bool> visitedF(N, false), visitedB(N, false);
 
-    // --- Heuristics ---
+    // Heuristics
     // Convert degree delta to meters
     auto geo_dist_m = [&](const Node *a, const Node *b)
     {
@@ -285,7 +285,7 @@ std::vector<std::pair<std::vector<double>, double>> Algorithms::k_shortest_paths
 
     const double INF = 1e18;
 
-    // ----------------- Utility: reconstruct paths -----------------
+    // Utility: reconstruct paths 
     auto reconstruct = [&](double t, const vector<double> &parent)
     {
         vector<double> path;
@@ -295,7 +295,7 @@ std::vector<std::pair<std::vector<double>, double>> Algorithms::k_shortest_paths
         return path;
     };
 
-    // ----------------- A* with edge penalties -----------------
+    // A* with edge penalties 
     auto runAstar = [&](const unordered_map<double, double> &penalty) -> pair<vector<double>, double>
     {
         int N = graph.size();
@@ -351,7 +351,7 @@ std::vector<std::pair<std::vector<double>, double>> Algorithms::k_shortest_paths
         return {{}, INF};
     };
 
-    // ---------- STEP 1: Find true shortest path ----------
+    // Find true shortest path 
     vector<pair<vector<double>, double>> result;
     unordered_map<double, double> noPenalty;
 
@@ -361,7 +361,7 @@ std::vector<std::pair<std::vector<double>, double>> Algorithms::k_shortest_paths
 
     result.push_back({bestPath, (double)bestDist});
 
-    // ---------- Store edges of previous paths ----------
+    //Store edges of previous paths
     auto collectEdges = [&](const vector<double> &path)
     {
         vector<pair<double, double>> edges;
@@ -373,7 +373,7 @@ std::vector<std::pair<std::vector<double>, double>> Algorithms::k_shortest_paths
     vector<vector<pair<double, double>>> prevEdges;
     prevEdges.push_back(collectEdges(bestPath));
 
-    // ---------- STEP 2: Find next k−1 diverse paths ----------
+    // Find next k−1 diverse paths 
     for (int i = 1; i < k; i++)
     {
         unordered_map<double, double> penalty;
@@ -433,7 +433,7 @@ std::vector<std::pair<std::vector<double>, double>> Algorithms::k_shortest_paths
         result.push_back({path, (int)dist});
     }
 
-    // ---------- STEP 3: Sort paths by increasing length ----------
+    //  Sort paths by increasing length 
     sort(result.begin(), result.end(),
          [&](auto &a, auto &b)
          { return a.second < b.second; });
