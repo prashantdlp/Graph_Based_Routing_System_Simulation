@@ -59,7 +59,7 @@ public:
                  const std::vector<double>& speed_profile, bool oneway, const std::string& road_type);
     
     const Node* getNode(int id) const;
-    const Edge* getEdge(int u, int v) const;
+    // const Edge* getEdge(int u, int v) const;
 
     bool removeEdge(int edge_id);
     bool modifyEdge(int edge_id, const Edge& patch);

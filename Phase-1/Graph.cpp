@@ -55,10 +55,10 @@ const Node *Graph::getNode(int id) const
     return it->second;
 }
 
-const Edge *Graph::getEdge(int u, int v) const
-{
-    return nullptr;
-}
+// const Edge *Graph::getEdge(int u, int v) const
+// {
+//     return nullptr;
+// }
 
 bool Graph::removeEdge(int edge_id)
 {

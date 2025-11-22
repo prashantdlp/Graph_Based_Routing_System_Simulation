@@ -143,7 +143,7 @@ std::tuple<bool, double, std::vector<int>> Shortest_paths_speed(
     const constraints &constraints)
 {
     int n = graph.size();
-    const double TIME_SLOT = 15.0;
+    // const double TIME_SLOT = 15.0;
 
     std::vector<int> forbidden_nodes = constraints.forbidden_nodes;
     std::vector<std::string> forbidden_road_types = constraints.forbidden_road_types;
@@ -163,7 +163,7 @@ std::tuple<bool, double, std::vector<int>> Shortest_paths_speed(
     std::vector<bool> visited(n, false);
     std::vector<double> time_to_reach(n, std::numeric_limits<double>::infinity());
     std::vector<int> parent(n, -1);
-    double time = 0.0;
+    // double time = 0.0;
 
     std::priority_queue<
         std::pair<double, int>,
